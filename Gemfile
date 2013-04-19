@@ -10,7 +10,7 @@ gem 'activeadmin'
 
 
 group :production do
-	gem 'pg'
+	gem 'pg' 
 end
 
 
