@@ -1,4 +1,16 @@
 MediaLibrary::Application.routes.draw do
+  resources :studios
+
+
+  resources :artists
+
+
+  resources :authors
+
+
+  resources :directors
+
+
   resources :games
 
 
