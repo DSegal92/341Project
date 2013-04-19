@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @music.title %>
+</p>
+
+<p>
+  <b>Rating:</b>
+  <%= @music.rating %>
+</p>
+
+<p>
+  <b>Format:</b>
+  <%= @music.format %>
+</p>
+
+<p>
+  <b>Genre:</b>
+  <%= @music.genre %>
+</p>
+
+<p>
+  <b>Tracks:</b>
+  <%= @music.tracks %>
+</p>
+
+<p>
+  <b>Year:</b>
+  <%= @music.year %>
+</p>
+
+<p>
+  <b>Comments:</b>
+  <%= @music.comments %>
+</p>
+
+
+<%= link_to 'Edit', edit_music_path(@music) %> |
+<%= link_to 'Back', musics_path %>

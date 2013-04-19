@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  tite: MyString
+  rating: 1
+  genre: MyString
+  year: 1
+  description: MyText
+  comments: MyText
+
+two:
+  tite: MyString
+  rating: 1
+  genre: MyString
+  year: 1
+  description: MyText
+  comments: MyText

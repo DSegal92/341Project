@@ -1,4 +1,16 @@
 MediaLibrary::Application.routes.draw do
+  resources :games
+
+
+  resources :musics
+
+
+  resources :books
+
+
+  resources :movies
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
