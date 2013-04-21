@@ -1,4 +1,7 @@
 MediaLibrary::Application.routes.draw do
+  resources :people
+
+
   ActiveAdmin.routes(self)
 
   devise_for :admin_users, ActiveAdmin::Devise.config

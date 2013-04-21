@@ -25,7 +25,8 @@ class MoviesController < ApplicationController
   # GET /movies/new.json
   def new
     @movie = Movie.new
-
+    @people = Person.all
+    @directors = Director.all
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @movie }
@@ -35,6 +36,8 @@ class MoviesController < ApplicationController
   # GET /movies/1/edit
   def edit
     @movie = Movie.find(params[:id])
+    @people = Person.all
+    @directors = Director.all
   end
 
   # POST /movies

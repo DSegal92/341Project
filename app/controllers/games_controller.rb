@@ -25,7 +25,7 @@ class GamesController < ApplicationController
   # GET /games/new.json
   def new
     @game = Game.new
-
+    @people = Person.all
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @game }
@@ -35,6 +35,7 @@ class GamesController < ApplicationController
   # GET /games/1/edit
   def edit
     @game = Game.find(params[:id])
+    @people = Person.all
   end
 
   # POST /games

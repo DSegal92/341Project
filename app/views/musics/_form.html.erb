@@ -39,6 +39,10 @@
     <%= f.label :comments %><br />
     <%= f.text_field :comments %>
   </div>
+  <div class="field">
+    <%= f.label :person %><br />
+    <%= f.collection_select :person_id, @people, :id, :name =%>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130419023959) do
+ActiveRecord::Schema.define(:version => 20130421212922) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -83,6 +83,8 @@ ActiveRecord::Schema.define(:version => 20130419023959) do
     t.text     "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "person_id"
+    t.integer  "author_id"
   end
 
   create_table "directors", :force => true do |t|
@@ -108,10 +110,11 @@ ActiveRecord::Schema.define(:version => 20130419023959) do
     t.integer  "rating"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "person_id"
   end
 
   create_table "movies", :force => true do |t|
-    t.string   "tite"
+    t.string   "title"
     t.integer  "rating"
     t.string   "genre"
     t.integer  "year"
@@ -119,6 +122,8 @@ ActiveRecord::Schema.define(:version => 20130419023959) do
     t.text     "comments"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.integer  "person_id"
+    t.integer  "director_id"
   end
 
   create_table "movies_directors", :id => false, :force => true do |t|
@@ -137,6 +142,13 @@ ActiveRecord::Schema.define(:version => 20130419023959) do
     t.text     "tracks"
     t.integer  "year"
     t.text     "comments"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "person_id"
+  end
+
+  create_table "people", :force => true do |t|
+    t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

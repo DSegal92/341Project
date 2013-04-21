@@ -12,8 +12,12 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :tite %><br />
-    <%= f.text_field :tite %>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+   <div class="field">
+    <%= f.label :director %><br />
+    <%= f.collection_select :director_ids, @directors, :id, :name %>
   </div>
   <div class="field">
     <%= f.label :rating %><br />
@@ -34,6 +38,10 @@
   <div class="field">
     <%= f.label :comments %><br />
     <%= f.text_area :comments %>
+  </div>
+  <div class="field">
+    <%= f.label :person %><br />
+    <%= f.collection_select :person_id, @people, :id, :name =%>
   </div>
   <div class="actions">
     <%= f.submit %>

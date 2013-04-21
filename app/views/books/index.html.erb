@@ -3,11 +3,13 @@
 <table>
   <tr>
     <th>Title</th>
+    <th>Author</th>
     <th>Year</th>
     <th>Comments</th>
     <th>Rating</th>
     <th>Genre</th>
     <th>Description</th>
+    <th>Owner</th>
     <th></th>
     <th></th>
     <th></th>
@@ -16,11 +18,16 @@
 <% @books.each do |book| %>
   <tr>
     <td><%= book.title %></td>
+
+    <td><%= book.authors.first().name %></td>
+
     <td><%= book.year %></td>
     <td><%= book.comments %></td>
     <td><%= book.rating %></td>
     <td><%= book.genre %></td>
     <td><%= book.description %></td>
+
+    <td><%= book.person.name %></td>
     <td><%= link_to 'Show', book %></td>
     <td><%= link_to 'Edit', edit_book_path(book) %></td>
     <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>

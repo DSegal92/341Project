@@ -2,7 +2,8 @@
 
 <table>
   <tr>
-    <th>Tite</th>
+    <th>Title</th>
+    <th>Director</th>
     <th>Rating</th>
     <th>Genre</th>
     <th>Year</th>
@@ -15,7 +16,8 @@
 
 <% @movies.each do |movie| %>
   <tr>
-    <td><%= movie.tite %></td>
+    <td><%= movie.title %></td>
+        <td><%= movie.directors.first().name %></td>
     <td><%= movie.rating %></td>
     <td><%= movie.genre %></td>
     <td><%= movie.year %></td>

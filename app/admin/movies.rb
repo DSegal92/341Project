@@ -1,7 +1,7 @@
 ActiveAdmin.register Movie do
   form do |f|
 		f.inputs do
-			f.input :tite
+			f.input :title
 			f.input :rating
 			f.input :genre
 			f.input :year

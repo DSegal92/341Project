@@ -1,7 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  tite: MyString
+  title: MyString
   rating: 1
   genre: MyString
   year: 1
@@ -9,7 +9,7 @@ one:
   comments: MyText
 
 two:
-  tite: MyString
+  title: MyString
   rating: 1
   genre: MyString
   year: 1
