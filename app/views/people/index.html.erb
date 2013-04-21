@@ -10,7 +10,9 @@
 
 <% @people.each do |person| %>
   <tr>
-    <td><%= person.name %></td>
+      <td><%= Person.find_by_sql('SELECT name 
+                          FROM People
+                          WHERE people.id = ' + person.id.to_s + '')[0]['name'] %></td>
     <td><%= link_to 'Show', person %></td>
     <td><%= link_to 'Edit', edit_person_path(person) %></td>
     <td><%= link_to 'Destroy', person, method: :delete, data: { confirm: 'Are you sure?' } %></td>

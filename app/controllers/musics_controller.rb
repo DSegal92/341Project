@@ -26,6 +26,7 @@ class MusicsController < ApplicationController
   def new
     @music = Music.new
     @people = Person.all
+    @artists = Artist.all
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @music }
@@ -36,6 +37,7 @@ class MusicsController < ApplicationController
   def edit
     @music = Music.find(params[:id])
     @people = Person.all
+    @artists = Artist.all
   end
 
   # POST /musics

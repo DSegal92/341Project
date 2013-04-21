@@ -3,12 +3,14 @@
 <table>
   <tr>
     <th>Title</th>
+    <th>Artist</th>
     <th>Rating</th>
     <th>Format</th>
     <th>Genre</th>
     <th>Tracks</th>
     <th>Year</th>
     <th>Comments</th>
+    <th>Owner</th>
     <th></th>
     <th></th>
     <th></th>
@@ -16,13 +18,42 @@
 
 <% @musics.each do |music| %>
   <tr>
-    <td><%= music.title %></td>
-    <td><%= music.rating %></td>
-    <td><%= music.format %></td>
-    <td><%= music.genre %></td>
-    <td><%= music.tracks %></td>
-    <td><%= music.year %></td>
-    <td><%= music.comments %></td>
+    <td><%= Music.find_by_sql('SELECT title 
+                               FROM Musics 
+                               WHERE musics.id = ' + music.id.to_s + '')[0]['title'] %></td>
+
+    <td><%= Artist.find_by_sql('SELECT name 
+                                FROM Artists INNER JOIN artists_musics ON artists.id = artists_musics.artist_id 
+                                WHERE artists_musics.music_id = ' + music.id.to_s + '')[0]['name'] %></td>
+
+    <td><%= Music.find_by_sql('SELECT rating 
+                               FROM Musics 
+                               WHERE musics.id = ' + music.id.to_s + '')[0]['rating'] %></td>
+
+    <td><%= Music.find_by_sql('SELECT format 
+                               FROM Musics 
+                               WHERE musics.id = ' + music.id.to_s + '')[0]['format'] %></td>
+
+    <td><%= Music.find_by_sql('SELECT genre
+                               FROM Musics 
+                               WHERE musics.id = ' + music.id.to_s + '')[0]['genre'] %></td>
+
+    <td><%= Music.find_by_sql('SELECT tracks
+                               FROM Musics 
+                               WHERE musics.id = ' + music.id.to_s + '')[0]['tracks'] %></td>
+
+    <td><%= Music.find_by_sql('SELECT year
+                               FROM Musics 
+                               WHERE musics.id = ' + music.id.to_s + '')[0]['year'] %></td>
+
+    <td><%= Music.find_by_sql('SELECT comments 
+                               FROM Musics 
+                               WHERE musics.id = ' + music.id.to_s + '')[0]['comments'] %></td>
+
+    <td><%= Person.find_by_sql('SELECT name 
+                                FROM People, Musics 
+                                WHERE people.id = musics.person_id AND musics.id = ' + music.id.to_s + '')[0]['name'] %></td>
+                                
     <td><%= link_to 'Show', music %></td>
     <td><%= link_to 'Edit', edit_music_path(music) %></td>
     <td><%= link_to 'Destroy', music, method: :delete, data: { confirm: 'Are you sure?' } %></td>

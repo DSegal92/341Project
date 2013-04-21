@@ -17,17 +17,38 @@
 
 <% @books.each do |book| %>
   <tr>
-    <td><%= book.title %></td>
+    <td><%= Book.find_by_sql('SELECT title 
+                              FROM Books 
+                              WHERE books.id = ' + book.id.to_s + '')[0]['title'] %></td>
 
-    <td><%= book.authors.first().name %></td>
+    <td><%= Author.find_by_sql('SELECT name 
+                                FROM Authors INNER JOIN authors_books ON authors.id = authors_books.author_id 
+                                WHERE authors_books.book_id = ' + book.id.to_s + '')[0]['name'] %></td>
 
-    <td><%= book.year %></td>
-    <td><%= book.comments %></td>
-    <td><%= book.rating %></td>
-    <td><%= book.genre %></td>
-    <td><%= book.description %></td>
+    <td><%= Book.find_by_sql('SELECT year 
+                              FROM Books 
+                              WHERE books.id = ' + book.id.to_s + '')[0]['year'] %></td>
 
-    <td><%= book.person.name %></td>
+    <td><%= Book.find_by_sql('SELECT comments 
+                              FROM Books 
+                              WHERE books.id = ' + book.id.to_s + '')[0]['comments'] %></td>
+
+    <td><%= Book.find_by_sql('SELECT rating 
+                              FROM Books 
+                              WHERE books.id = ' + book.id.to_s + '')[0]['rating'] %></td>
+
+    <td><%= Book.find_by_sql('SELECT genre 
+                              FROM Books 
+                              WHERE books.id = ' + book.id.to_s + '')[0]['genre'] %></td>
+
+    <td><%= Book.find_by_sql('SELECT description 
+                              FROM Books 
+                              WHERE books.id = ' + book.id.to_s + '')[0]['description'] %></td>
+
+    <td><%= Person.find_by_sql('SELECT name 
+                                FROM People, Books 
+                                WHERE people.id = books.person_id AND books.id = ' + book.id.to_s + '')[0]['name'] %></td>
+                                
     <td><%= link_to 'Show', book %></td>
     <td><%= link_to 'Edit', edit_book_path(book) %></td>
     <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>

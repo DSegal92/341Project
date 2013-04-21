@@ -3,6 +3,7 @@
 <table>
   <tr>
     <th>Title</th>
+    <th>Studio</th>
     <th>Year</th>
     <th>Genre</th>
     <th>Description</th>
@@ -15,12 +16,33 @@
 
 <% @games.each do |game| %>
   <tr>
-    <td><%= game.title %></td>
-    <td><%= game.year %></td>
-    <td><%= game.genre %></td>
-    <td><%= game.description %></td>
-    <td><%= game.comments %></td>
-    <td><%= game.rating %></td>
+    <td><%= Game.find_by_sql('SELECT title 
+                              FROM Games
+                              WHERE games.id = ' + game.id.to_s + '')[0]['title'] %></td>
+
+    <td><%= Studio.find_by_sql('SELECT name 
+                                FROM Studios INNER JOIN games_studios ON studios.id = games_studios.studio_id 
+                                WHERE games_studios.game_id = ' + game.id.to_s + '')[0]['name'] %></td>
+
+    <td><%= Game.find_by_sql('SELECT year 
+                              FROM Games
+                              WHERE games.id = ' + game.id.to_s + '')[0]['year'] %></td>
+
+    <td><%= Game.find_by_sql('SELECT genre 
+                              FROM Games
+                              WHERE games.id = ' + game.id.to_s + '')[0]['genre'] %></td>
+
+    <td><%= Game.find_by_sql('SELECT description
+                              FROM Games
+                              WHERE games.id = ' + game.id.to_s + '')[0]['description'] %></td>
+
+    <td><%= Game.find_by_sql('SELECT comments 
+                              FROM Games
+                              WHERE games.id = ' + game.id.to_s + '')[0]['comments'] %></td>
+                              
+    <td><%= Game.find_by_sql('SELECT rating
+                              FROM Games
+                              WHERE games.id = ' + game.id.to_s + '')[0]['rating'] %></td>
     <td><%= link_to 'Show', game %></td>
     <td><%= link_to 'Edit', edit_game_path(game) %></td>
     <td><%= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' } %></td>

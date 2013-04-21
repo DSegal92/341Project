@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130421212922) do
+ActiveRecord::Schema.define(:version => 20130421225639) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -111,7 +111,16 @@ ActiveRecord::Schema.define(:version => 20130421212922) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.integer  "person_id"
+    t.integer  "studio_id"
   end
+
+  create_table "games_studios", :id => false, :force => true do |t|
+    t.integer "studio_id"
+    t.integer "game_id"
+  end
+
+  add_index "games_studios", ["game_id", "studio_id"], :name => "index_games_studios_on_game_id_and_studio_id"
+  add_index "games_studios", ["studio_id", "game_id"], :name => "index_games_studios_on_studio_id_and_game_id"
 
   create_table "movies", :force => true do |t|
     t.string   "title"

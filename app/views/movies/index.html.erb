@@ -9,6 +9,7 @@
     <th>Year</th>
     <th>Description</th>
     <th>Comments</th>
+    <th>Owner</th>
     <th></th>
     <th></th>
     <th></th>
@@ -16,13 +17,30 @@
 
 <% @movies.each do |movie| %>
   <tr>
-    <td><%= movie.title %></td>
-        <td><%= movie.directors.first().name %></td>
-    <td><%= movie.rating %></td>
-    <td><%= movie.genre %></td>
-    <td><%= movie.year %></td>
-    <td><%= movie.description %></td>
-    <td><%= movie.comments %></td>
+    <td><%= Movie.find_by_sql('SELECT title 
+                          FROM Movies 
+                          WHERE movies.id = ' + movie.id.to_s + '')[0]['title'] %></td>
+    <td><%= Director.find_by_sql('SELECT name 
+                                  FROM Directors INNER JOIN directors_movies ON directors.id = directors_movies.director_id 
+                                  WHERE directors_movies.movie_id = ' + movie.id.to_s + '')[0]['name'] %></td>
+    <td><%= Movie.find_by_sql('SELECT rating 
+                          FROM Movies 
+                          WHERE movies.id = ' + movie.id.to_s + '')[0]['rating'] %></td>
+       <td><%= Movie.find_by_sql('SELECT genre 
+                          FROM Movies 
+                          WHERE movies.id = ' + movie.id.to_s + '')[0]['genre'] %></td>
+       <td><%= Movie.find_by_sql('SELECT year
+                          FROM Movies 
+                          WHERE movies.id = ' + movie.id.to_s + '')[0]['year'] %></td>
+       <td><%= Movie.find_by_sql('SELECT description 
+                          FROM Movies 
+                          WHERE movies.id = ' + movie.id.to_s + '')[0]['description'] %></td>
+       <td><%= Movie.find_by_sql('SELECT comments 
+                          FROM Movies 
+                          WHERE movies.id = ' + movie.id.to_s + '')[0]['comments'] %></td>
+    <td><%= Person.find_by_sql('SELECT name 
+                                FROM People, Movies 
+                                WHERE people.id = movies.person_id AND movies.id = ' + movie.id.to_s + '')[0]['name'] %></td>
     <td><%= link_to 'Show', movie %></td>
     <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
     <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %></td>
