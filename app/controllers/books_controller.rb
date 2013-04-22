@@ -3,8 +3,7 @@ class BooksController < ApplicationController
   # GET /books.json
   def index
     @books = Book.all
-    sql = 'SELECT "authors".* FROM "authors" INNER JOIN "authors_books" ON "authors"."id" = "authors_books"."author_id" WHERE "authors_books"."book_id" = 11'
-    @find = Author.find_by_sql(sql)
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @books }

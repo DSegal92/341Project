@@ -135,14 +135,6 @@ ActiveRecord::Schema.define(:version => 20130421225639) do
     t.integer  "director_id"
   end
 
-  create_table "movies_directors", :id => false, :force => true do |t|
-    t.integer "movie_id"
-    t.integer "director_id"
-  end
-
-  add_index "movies_directors", ["director_id", "movie_id"], :name => "index_movies_directors_on_director_id_and_movie_id"
-  add_index "movies_directors", ["movie_id", "director_id"], :name => "index_movies_directors_on_movie_id_and_director_id"
-
   create_table "musics", :force => true do |t|
     t.string   "title"
     t.integer  "rating"

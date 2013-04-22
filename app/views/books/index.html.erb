@@ -22,8 +22,8 @@
                               WHERE books.id = ' + book.id.to_s + '')[0]['title'] %></td>
 
     <td><%= Author.find_by_sql('SELECT name 
-                                FROM Authors INNER JOIN authors_books ON authors.id = authors_books.author_id 
-                                WHERE authors_books.book_id = ' + book.id.to_s + '')[0]['name'] %></td>
+                                FROM Authors A, Books B, Authors_Books C 
+                                WHERE A.id = C.author_id AND C.book_id = B.id And B.id = ' + book.id.to_s + '')[0]['name'] %></td>
 
     <td><%= Book.find_by_sql('SELECT year 
                               FROM Books 
