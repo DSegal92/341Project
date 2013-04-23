@@ -1,5 +1,5 @@
 class Movie < ActiveRecord::Base
-  attr_accessible :comments, :description, :genre, :rating, :title, :year, :person_id, :director_ids
+  attr_accessible :comments, :description, :genre, :rating, :title, :year, :person_id, :director_ids, :director_id
 
   has_and_belongs_to_many :directors
   belongs_to :person
