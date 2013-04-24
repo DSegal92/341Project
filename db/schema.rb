@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130421225639) do
+ActiveRecord::Schema.define(:version => 20130424004818) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -135,6 +135,14 @@ ActiveRecord::Schema.define(:version => 20130421225639) do
     t.integer  "director_id"
   end
 
+  create_table "movies_directors", :id => false, :force => true do |t|
+    t.integer "movie_id"
+    t.integer "director_id"
+  end
+
+  add_index "movies_directors", ["director_id", "movie_id"], :name => "index_movies_directors_on_director_id_and_movie_id"
+  add_index "movies_directors", ["movie_id", "director_id"], :name => "index_movies_directors_on_movie_id_and_director_id"
+
   create_table "musics", :force => true do |t|
     t.string   "title"
     t.integer  "rating"
@@ -146,6 +154,7 @@ ActiveRecord::Schema.define(:version => 20130421225639) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "person_id"
+    t.integer  "artist_id"
   end
 
   create_table "people", :force => true do |t|

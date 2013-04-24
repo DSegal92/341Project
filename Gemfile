@@ -7,14 +7,15 @@ gem 'rails', '3.2.11'
 
 
 gem 'activeadmin'
-gem 'activerecord-mysql-adapter'
+
+
 
 group :production do
 	gem 'pg' 
 end
 
 group :development do
-	gem 'mysql2'
+	gem 'sqlite3'
 end
 
 
