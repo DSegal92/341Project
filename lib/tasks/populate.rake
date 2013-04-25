@@ -17,6 +17,10 @@ namespace :db do
 	# Create user2
 	user2 = Person.create!(
 		:name			=> "Jon")
+		
+	# Create user3
+	user3 = Person.create!(
+		:name			=> "Tom")
 	
 	# Create Andrew Bird
 	andrewbird = Artist.create!(
@@ -43,7 +47,8 @@ namespace :db do
 		:tracks			=> "Three White Horses, When that Helicopter Comes, Spirograph, Railroad Bill, Something Biblical, If I Needed You, Orpheo, Beyond the Valley of the Three White Horses",
 		:year			=> 2011,
 		:comments		=> "Good album",
-		:person_id		=> user1.id)
+		:person_id		=> user1.id
+		:artist_id		=> andrewbird.id)
 		
 	# Create Led Zeppelin I
 	lz1 = Music.create!(
@@ -54,7 +59,8 @@ namespace :db do
 		:tracks			=> "Good Times Bad Times, Babe I'm Gonna Leave You, You Shook Me, Dazed and Confused, Your Time is Gonna Come, Black Mountain Side, Communication Breatkdown, I Can't Quit You Baby, How Many More Times",
 		:year			=> 1969,
 		:comments		=> "Launched their career",
-		:person_id		=> user2.id)
+		:person_id		=> user2.id
+		:artist_id		=> ledzeppelin.id)
 		
 	# Create Led Zeppelin II
 	lz2 = Music.create!(
@@ -65,7 +71,8 @@ namespace :db do
 		:tracks			=> "Whole Lotta Love, What Is and What Should Never Be, The Lemon Song, Thank You, Heartbreaker, Living Loving Maid, Ramble On, Moby Disk, Bring It On Home",
 		:year			=> 1969,
 		:comments		=> "Cited as amongst the most influential rock albums of all time.",
-		:person_id		=> user2.id)
+		:person_id		=> user2.id
+		:artist_id		=> ledzeppelin.id)
 		
 	# Create Led Zeppelin III
 	lz3 = Music.create!(
@@ -76,7 +83,8 @@ namespace :db do
 		:tracks			=> "Immigrant Song, Friends, Celebration Day, Since I've Been Loving You, Out on the Tiles, Gallows Pole, Tangerine, That's the Way, Bron-Y-Aur Stomp, Hats Off to (Roy) Harper",
 		:year			=> 1970,
 		:comments		=> "A major change from their established sound",
-		:person_id		=> user2.id)
+		:person_id		=> user2.id
+		:artist_id		=> ledzeppelin.id)
 		
 	# Create Led Zeppelin IV
 	lz4 = Music.create!(
@@ -87,7 +95,8 @@ namespace :db do
 		:tracks			=> "Black Dog, Rock and Roll, The Battle of Evermore, Stairway to Heaven, Misty Mountain Hop, Four Sticks, Going to California, when the Levee Breaks",
 		:year			=> 1971,
 		:comments		=> "Contains several all time classic rock songs.",
-		:person_id		=> user2.id)
+		:person_id		=> user2.id
+		:artist_id		=> ledzeppelin.id)
 		
 	# Create Fever to Tell
 	fevertotell = Music.create!(
@@ -98,7 +107,8 @@ namespace :db do
 		:tracks			=> "Rich, Date with the Night, Man, Tick, Black Tounge, Pin, Cold Light, No No No, Maps, Y Control, Modern Romance",
 		:year			=> 2003,
 		:comments		=> "The band's debut album",
-		:person_id		=> user1.id)
+		:person_id		=> user1.id
+		:artist_id		=> yeahyeahyeahs.id)
 		
 	# Create Show Your Bones
 	showyourbones = Music.create!(
@@ -109,7 +119,8 @@ namespace :db do
 		:tracks			=> "Gold Lion, Way Out, Fancy, Phenomena, Honeybear, Cheated Hearts, Dudley, Mysteries, The Sweets, Warrior, Turn Into",
 		:year			=> 2007,
 		:comments		=> "Nominated for Grammy for Best Alternative Music Album",
-		:person_id		=> user1.id)
+		:person_id		=> user1.id
+		:artist_id		=> yeahyeahyeahs.id)
 		
 	# Create Soviet Kitsch
 	sovietkitsch = Music.create!(
@@ -120,7 +131,8 @@ namespace :db do
 		:tracks			=> "Ode to Divorce, Poor Little Rich Boy, Carbon Monoxide, The Flowers, Us, Sailor SOng, Whisper, Your Honor, Ghost of Corporate Future, Chemo Lino, Somedays",
 		:year			=> 2004,
 		:comments		=> "Soviet Kitsch is the major label debut and third album by American singer/songwriter Regina Spektor.",
-		:person_id		=> user1.id)
+		:person_id		=> user1.id
+		:artist_id		=> reginaspektor.id)
 		
 	# Create Begin to Hope
 	begintohope = Music.create!(
@@ -131,7 +143,8 @@ namespace :db do
 		:tracks			=> "Fidelity, Better, Samson, On the Radio, Field Below, Hotel Song, Apres Moi, 20 Years of Snow, That Time, Edit, Lady, Summer in the City",
 		:year			=> 2006,
 		:comments		=> "Begin to Hope is the fourth album by American singer-songwriter, Regina Spektor.",
-		:person_id		=> user1.id)
+		:person_id		=> user1.id
+		:artist_id		=> reginaspektor.id)
 		
 	# Create Far
 	far = Music.create!(
@@ -142,7 +155,8 @@ namespace :db do
 		:tracks			=> "The Calculation, Eet, Blue Lips, Folding Chair, Machine, Laughing With, Human of the Year, Two Birds, Dance Anthem of the 80's, Genius Next Door, Wallet, One More Time with Feeling, Man of a Thousand Faces",
 		:year			=> 2009,
 		:comments		=> "Far is the fifth album by American alternative singer-songwriter Regina Spektor, released in Europe through Sire Records on June 22, 2009 and North America on June 23, 2009.",
-		:person_id		=> user1.id)
+		:person_id		=> user1.id
+		:artist_id		=> reginaspektor.id)
 		
 	# Create What We Saw from the Cheap Seats
 	whatwesawfromthecheapseats = Music.create!(
@@ -153,7 +167,8 @@ namespace :db do
 		:tracks			=> "Samll Town Moon, Oh Marcello, Don't Leave Me, Firewood, Patron Saint, How, All the Rowboats, Open, The Party, Jessica",
 		:year			=> 2012,
 		:comments		=> "What We Saw from the Cheap Seats is the sixth studio album by American alternative singer-songwriter Regina Spektor.",
-		:person_id		=> user1.id)
+		:person_id		=> user1.id
+		:artist_id		=> reginaspektor.id)
 		
 
     # Create Patrick Rothfuss
@@ -171,6 +186,10 @@ namespace :db do
 	# Create Ray Bradbury
 	raybradbury = Author.create!(
 		:name			=> "Ray Bradbury")
+		
+	# Create Joseph Heller
+	josephheller = Author.create!(
+		:name			=> "Joseph Heller")
 	  
 	# Create The Name of the Wind
 	nameofwind = Book.create!(
@@ -242,12 +261,34 @@ namespace :db do
 	somethingwicked = Book.create!(
 		:title 			=> "Something Wicked This Way Comes",
 		:year 			=> 1962,
-		:comments 		=> "Frequently refenece in popular culture",
+		:comments 		=> "Frequently referenced in popular culture",
 		:rating			=> 3,
 		:genre			=> "Fantasy Horror",
 		:description 	=> "Something Wicked This Way Comes is about two 13-year-old boys, Jim Nightshade and William Halloway, who have a harrowing experience with a nightmarish traveling carnival that comes to their Midwestern town one October.",
 		:person_id		=> user2.id,
 		:author_id		=> raybradbury.id)
+		
+	# Create Catch 22
+	catch22 = Book.create!(
+		:title 			=> "Catch 22",
+		:year 			=> 1961,
+		:comments 		=> "Often cited as one of the greate literary works of the twentieth century.",
+		:rating			=> 5,
+		:genre			=> "Black Humor",
+		:description 	=> "Catch-22 is a satirical and somewhat historical novel by the American author Joseph Heller.",
+		:person_id		=> user3.id,
+		:author_id		=> josephheller.id)
+		
+	# Create Something Happened
+	somethinghappened = Book.create!(
+		:title 			=> "Something Happened",
+		:year 			=> 1974,
+		:comments 		=> "Published 13 years after Heller's first novel.",
+		:rating			=> 3,
+		:genre			=> "Satire",
+		:description 	=> " Its main character and narrator is Bob Slocum, a businessman who engages in a stream of consciousness narrative about his job, his family, his childhood, his sexual escapades, and his own psyche.",
+		:person_id		=> user2.id,
+		:author_id		=> josephheller.id)
   
   
 	# Create Steven Spielberg
@@ -270,7 +311,7 @@ namespace :db do
 		:year			=> 1998,
 		:description	=> "Saving Private Ryan is a 1998 American epic war film set during the invasion of Normandy in World War II.",
 		:comments		=> "Critically aclaimed",
-		:person_id		=> user2.id,
+		:person_id		=> user3.id,
 		:director_id	=> spielberg.id)
 		
 	# Create ET
@@ -363,6 +404,14 @@ namespace :db do
 	bethesda = Studio.create!(
 		:name			=> "Bethesda")
 		
+	# Create Infinity Ward
+	infinityward = Studio.create!(
+		:name			=> "Infinity Ward")
+		
+	# Create Treyarch
+	treyarch = Studio.create!(
+		:name			=> "Treyarch")
+		
 	# Create Mass Effect
 	masseffect = Game.create!(
 		:title			=> "Mass Effect",
@@ -450,5 +499,38 @@ namespace :db do
 		:rating			=> 4,
 		:person_id		=> user1.id,
 		:studio_id		=> bethesda.id)
+		
+	# Create Call of Duty
+	callofduty = Game.create!(
+		:title			=> "Call of Duty",
+		:year			=> 2003,
+		:genre			=> "FPS",
+		:description	=> "As a first-person shooter, Call of Duty places the player in control of an infantry soldier who makes use of various authentic World War II firearms in combat.",
+		:comments		=> "The game that started the franchise",
+		:rating			=> 5,
+		:person_id		=> user3.id,
+		:studio_id		=> infinityward.id)
+		
+	# Create Call of Duty III
+	callofduty3 = Game.create!(
+		:title			=> "Call of Duty III",
+		:year			=> 2006,
+		:genre			=> "FPS",
+		:description	=> "Call of Duty 3 is a World War II first-person shooter and the third installment in the Call of Duty video game series first released on November 7, 2006.",
+		:comments		=> "This game was a launch title for the PS3 and Wii in North America, Europe and Australia.",
+		:rating			=> 4,
+		:person_id		=> user3.id,
+		:studio_id		=> treyarch.id)
+		
+	# Create Call of Duty IV
+	callofduty4 = Game.create!(
+		:title			=> "Call of Duty IV",
+		:year			=> 2007,
+		:genre			=> "FPS",
+		:description	=> "Call of Duty 4: Modern Warfare is a 2007 first-person shooter video game, developed by Infinity Ward and published by Activision for Microsoft Windows, Mac OS X, PlayStation 3, Xbox 360 and Wii.",
+		:comments		=> "Critically acclaimed, the game received an aggregated score of 94% from both GameRankings and Metacritic, and is considered by many to be the best Call of Duty in the series.",
+		:rating			=> 5,
+		:person_id		=> user3.id,
+		:studio_id		=> infinityward.id)
   end
 end
