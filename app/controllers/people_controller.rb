@@ -1,2 +1,2 @@
-class PeopleController < InheritedResources::Base
+class PeopleController <  ApplicationController
 end
