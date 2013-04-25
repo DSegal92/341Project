@@ -7,7 +7,6 @@ gem 'faker'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 
-gem 'activeadmin'
 gem 'bootstrap-sass', '2.1'
 
 
