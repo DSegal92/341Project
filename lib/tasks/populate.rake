@@ -47,7 +47,7 @@ namespace :db do
 		:tracks			=> "Three White Horses, When that Helicopter Comes, Spirograph, Railroad Bill, Something Biblical, If I Needed You, Orpheo, Beyond the Valley of the Three White Horses",
 		:year			=> 2011,
 		:comments		=> "Good album",
-		:person_id		=> user1.id
+		:person_id		=> user1.id,
 		:artist_id		=> andrewbird.id)
 		
 	# Create Led Zeppelin I
@@ -59,7 +59,7 @@ namespace :db do
 		:tracks			=> "Good Times Bad Times, Babe I'm Gonna Leave You, You Shook Me, Dazed and Confused, Your Time is Gonna Come, Black Mountain Side, Communication Breatkdown, I Can't Quit You Baby, How Many More Times",
 		:year			=> 1969,
 		:comments		=> "Launched their career",
-		:person_id		=> user2.id
+		:person_id		=> user2.id,
 		:artist_id		=> ledzeppelin.id)
 		
 	# Create Led Zeppelin II
@@ -71,7 +71,7 @@ namespace :db do
 		:tracks			=> "Whole Lotta Love, What Is and What Should Never Be, The Lemon Song, Thank You, Heartbreaker, Living Loving Maid, Ramble On, Moby Disk, Bring It On Home",
 		:year			=> 1969,
 		:comments		=> "Cited as amongst the most influential rock albums of all time.",
-		:person_id		=> user2.id
+		:person_id		=> user2.id,
 		:artist_id		=> ledzeppelin.id)
 		
 	# Create Led Zeppelin III
@@ -83,7 +83,7 @@ namespace :db do
 		:tracks			=> "Immigrant Song, Friends, Celebration Day, Since I've Been Loving You, Out on the Tiles, Gallows Pole, Tangerine, That's the Way, Bron-Y-Aur Stomp, Hats Off to (Roy) Harper",
 		:year			=> 1970,
 		:comments		=> "A major change from their established sound",
-		:person_id		=> user2.id
+		:person_id		=> user2.id,
 		:artist_id		=> ledzeppelin.id)
 		
 	# Create Led Zeppelin IV
@@ -95,7 +95,7 @@ namespace :db do
 		:tracks			=> "Black Dog, Rock and Roll, The Battle of Evermore, Stairway to Heaven, Misty Mountain Hop, Four Sticks, Going to California, when the Levee Breaks",
 		:year			=> 1971,
 		:comments		=> "Contains several all time classic rock songs.",
-		:person_id		=> user2.id
+		:person_id		=> user2.id,
 		:artist_id		=> ledzeppelin.id)
 		
 	# Create Fever to Tell
@@ -107,7 +107,7 @@ namespace :db do
 		:tracks			=> "Rich, Date with the Night, Man, Tick, Black Tounge, Pin, Cold Light, No No No, Maps, Y Control, Modern Romance",
 		:year			=> 2003,
 		:comments		=> "The band's debut album",
-		:person_id		=> user1.id
+		:person_id		=> user1.id,
 		:artist_id		=> yeahyeahyeahs.id)
 		
 	# Create Show Your Bones
@@ -119,7 +119,7 @@ namespace :db do
 		:tracks			=> "Gold Lion, Way Out, Fancy, Phenomena, Honeybear, Cheated Hearts, Dudley, Mysteries, The Sweets, Warrior, Turn Into",
 		:year			=> 2007,
 		:comments		=> "Nominated for Grammy for Best Alternative Music Album",
-		:person_id		=> user1.id
+		:person_id		=> user1.id,
 		:artist_id		=> yeahyeahyeahs.id)
 		
 	# Create Soviet Kitsch
@@ -131,7 +131,7 @@ namespace :db do
 		:tracks			=> "Ode to Divorce, Poor Little Rich Boy, Carbon Monoxide, The Flowers, Us, Sailor SOng, Whisper, Your Honor, Ghost of Corporate Future, Chemo Lino, Somedays",
 		:year			=> 2004,
 		:comments		=> "Soviet Kitsch is the major label debut and third album by American singer/songwriter Regina Spektor.",
-		:person_id		=> user1.id
+		:person_id		=> user1.id,
 		:artist_id		=> reginaspektor.id)
 		
 	# Create Begin to Hope
@@ -143,7 +143,7 @@ namespace :db do
 		:tracks			=> "Fidelity, Better, Samson, On the Radio, Field Below, Hotel Song, Apres Moi, 20 Years of Snow, That Time, Edit, Lady, Summer in the City",
 		:year			=> 2006,
 		:comments		=> "Begin to Hope is the fourth album by American singer-songwriter, Regina Spektor.",
-		:person_id		=> user1.id
+		:person_id		=> user1.id,
 		:artist_id		=> reginaspektor.id)
 		
 	# Create Far
@@ -155,7 +155,7 @@ namespace :db do
 		:tracks			=> "The Calculation, Eet, Blue Lips, Folding Chair, Machine, Laughing With, Human of the Year, Two Birds, Dance Anthem of the 80's, Genius Next Door, Wallet, One More Time with Feeling, Man of a Thousand Faces",
 		:year			=> 2009,
 		:comments		=> "Far is the fifth album by American alternative singer-songwriter Regina Spektor, released in Europe through Sire Records on June 22, 2009 and North America on June 23, 2009.",
-		:person_id		=> user1.id
+		:person_id		=> user1.id,
 		:artist_id		=> reginaspektor.id)
 		
 	# Create What We Saw from the Cheap Seats
@@ -167,7 +167,7 @@ namespace :db do
 		:tracks			=> "Samll Town Moon, Oh Marcello, Don't Leave Me, Firewood, Patron Saint, How, All the Rowboats, Open, The Party, Jessica",
 		:year			=> 2012,
 		:comments		=> "What We Saw from the Cheap Seats is the sixth studio album by American alternative singer-songwriter Regina Spektor.",
-		:person_id		=> user1.id
+		:person_id		=> user1.id,
 		:artist_id		=> reginaspektor.id)
 		
 
