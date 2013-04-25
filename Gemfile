@@ -8,6 +8,8 @@ gem 'faker'
 
 
 gem 'activeadmin'
+gem 'bootstrap-sass', '2.1'
+
 
 
 
