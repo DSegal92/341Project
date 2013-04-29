@@ -1,20 +1,16 @@
-<h1>Listing musics</h1>
-
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Artist</th>
-    <th>Rating</th>
-    <th>Format</th>
-    <th>Genre</th>
-    <th>Tracks</th>
-    <th>Year</th>
-    <th>Comments</th>
-    <th>Owner</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<div class="music">
+  <div class="container_16"><h1>My Music</h1>
+    <br>
+    <table id="media" class="table-hover">
+      <tr>
+        <td><b>Title</b></td>
+        <td><b>Author</b></td>
+        <td><b>Year</b></td>
+        <td><b>Rating</b></td>
+        <td><b>Genre</b></td>
+        <td><b>Format</b></td>
+        <td><b>Owner</b></td>
+      </tr>
 
 <% @musics.each do |music| %>
   <tr>
@@ -25,42 +21,62 @@
     <td><%= Artist.find_by_sql('SELECT name 
                                 FROM Artists INNER JOIN artists_musics ON artists.id = artists_musics.artist_id 
                                 WHERE artists_musics.music_id = ' + music.id.to_s + '')[0]['name'] %></td>
-
-    <td><%= Music.find_by_sql('SELECT rating 
+    <td><%= Music.find_by_sql('SELECT year
                                FROM Musics 
-                               WHERE musics.id = ' + music.id.to_s + '')[0]['rating'] %></td>
+                               WHERE musics.id = ' + music.id.to_s + '')[0]['year'] %></td>
 
-    <td><%= Music.find_by_sql('SELECT format 
+    <td><% @rating = Music.find_by_sql('SELECT rating 
                                FROM Musics 
-                               WHERE musics.id = ' + music.id.to_s + '')[0]['format'] %></td>
+                               WHERE musics.id = ' + music.id.to_s + '')[0]['rating'] %>          <% if @rating == 5 %>
+          <img src="/assets/5star.png" width='100'>
+          <% elsif @rating == 4 %>
+          <img src="/assets/4star.png" width='100'>
+          <% elsif @rating == 3 %>
+          <img src="/assets/3star.png" width='100'>
+          <% elsif @rating == 2 %>
+          <img src="/assets/2star.png" width='100'>
+          <% elsif @rating == 1 %>
+          <img src="/assets/1star.png" width='100'>
+          <% end %>
+        </td>
 
     <td><%= Music.find_by_sql('SELECT genre
                                FROM Musics 
                                WHERE musics.id = ' + music.id.to_s + '')[0]['genre'] %></td>
 
-    <td><%= Music.find_by_sql('SELECT tracks
+    <td><%= Music.find_by_sql('SELECT format 
                                FROM Musics 
-                               WHERE musics.id = ' + music.id.to_s + '')[0]['tracks'] %></td>
-
-    <td><%= Music.find_by_sql('SELECT year
-                               FROM Musics 
-                               WHERE musics.id = ' + music.id.to_s + '')[0]['year'] %></td>
-
-    <td><%= Music.find_by_sql('SELECT comments 
-                               FROM Musics 
-                               WHERE musics.id = ' + music.id.to_s + '')[0]['comments'] %></td>
+                               WHERE musics.id = ' + music.id.to_s + '')[0]['format'] %></td>
 
     <td><%= Person.find_by_sql('SELECT name 
                                 FROM People, Musics 
                                 WHERE people.id = musics.person_id AND musics.id = ' + music.id.to_s + '')[0]['name'] %></td>
-                                
-    <td><%= link_to 'Show', music %></td>
-    <td><%= link_to 'Edit', edit_music_path(music) %></td>
-    <td><%= link_to 'Destroy', music, method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
+  <tr>
+        <td colspan=6>
+          <div class="test">
+            <b>Tracks:</b>
+             <%= Music.find_by_sql('SELECT tracks 
+              FROM Musics 
+              WHERE musics.id = ' + music.id.to_s + '')[0]['tracks']%> <br><br>
+              <b>Comments:</b>
+              <%= Music.find_by_sql('SELECT comments 
+              FROM Musics 
+              WHERE musics.id = ' + music.id.to_s + '')[0]['comments'].truncate(140) %>
+              <ul>
+                <li class="spacer"><%= link_to 'Show', music %></li>
+                <li class="spacer"><%= link_to 'Edit', edit_music_path(music) %></li>
+                <li class="spacer"><%= link_to 'Destroy', music, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+              </ul>
+        </td>
+      </tr>
 <% end %>
 </table>
 
 <br />
 
 <%= link_to 'New Music', new_music_path %>
+ <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</div>
+</div>

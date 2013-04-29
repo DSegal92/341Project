@@ -8,7 +8,9 @@ gem 'faker'
 
 
 gem 'bootstrap-sass', '2.1'
-
+gem 'asin'
+gem "httpclient",   "~> 2.2"
+gem "ruby-aaws", "~> 0.7.0"
 
 
 

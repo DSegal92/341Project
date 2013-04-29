@@ -29,6 +29,11 @@ GEM
       i18n (~> 0.6)
       multi_json (~> 1.0)
     arel (3.0.2)
+    asin (1.1.1)
+      confiture (>= 0.1)
+      crack (>= 0.3)
+      hashie (>= 1.1)
+      httpi (>= 0.9)
     bootstrap-sass (2.1.0.0)
     builder (3.0.4)
     coffee-rails (3.2.2)
@@ -38,12 +43,18 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.2)
+    confiture (0.1.4)
+    crack (0.3.2)
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
     faker (1.1.2)
       i18n (~> 0.5)
+    hashie (1.2.0)
     hike (1.2.2)
+    httpclient (2.3.3)
+    httpi (2.0.2)
+      rack
     i18n (0.6.4)
     journey (1.0.4)
     jquery-rails (2.2.1)
@@ -84,6 +95,7 @@ GEM
     rake (10.0.4)
     rdoc (3.12.2)
       json (~> 1.4)
+    ruby-aaws (0.7.0)
     sass (3.2.7)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
@@ -111,12 +123,15 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
+  asin
   bootstrap-sass (= 2.1)
   coffee-rails (~> 3.2.1)
   faker
+  httpclient (~> 2.2)
   jquery-rails
   pg
   rails (= 3.2.11)
+  ruby-aaws (~> 0.7.0)
   sass-rails (~> 3.2.3)
   sqlite3
   uglifier (>= 1.0.3)

@@ -1,69 +1,82 @@
-body {
+.books{
+  background-image: url('/assets/books.jpg');
+  background-attachment:fixed;
+}
+
+.music{
+  background-image: url('/assets/music.jpg');
+  background-attachment:fixed;
+}
+
+.movies{
+  background-image: url('/assets/movies.jpg');
+  background-attachment:fixed;
+}
+
+.games{
+  background-image: url('/assets/games.jpg');
+  background-attachment:fixed;
+}
+
+.navbar{
+	margin-bottom: 0px;
+}
+
+.container_16{
   background-color: #fff;
-  color: #333;
-  font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 13px;
-  line-height: 18px;
+  padding-left: 40px;
+  padding-right: 40px;
 }
 
-p, ol, ul, td {
-  font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 13px;
-  line-height: 18px;
+.centered{
+  text-align: center;
 }
 
-pre {
-  background-color: #eee;
-  padding: 10px;
-  font-size: 11px;
+.spacer{
+  margin-right: 20px;
 }
 
-a {
-  color: #000;
-  &:visited {
-    color: #666;
-  }
-  &:hover {
-    color: #fff;
-    background-color: #000;
-  }
+.books ul li{
+	display: inline;
 }
 
-div {
-  &.field, &.actions {
-    margin-bottom: 10px;
-  }
+.books ul{	
+	padding-left: 700px;
 }
 
-#notice {
-  color: green;
+.movies ul li{
+	display: inline;
 }
 
-.field_with_errors {
-  padding: 2px;
-  background-color: red;
-  display: table;
+.movies ul{	
+	padding-left: 700px;
+}
+.games ul li{
+	display: inline;
 }
 
-#error_explanation {
-  width: 450px;
-  border: 2px solid red;
-  padding: 7px;
-  padding-bottom: 0;
-  margin-bottom: 20px;
-  background-color: #f0f0f0;
-  h2 {
-    text-align: left;
-    font-weight: bold;
-    padding: 5px 5px 5px 15px;
-    font-size: 12px;
-    margin: -7px;
-    margin-bottom: 0px;
-    background-color: #c00;
-    color: #fff;
-  }
-  ul li {
-    font-size: 12px;
-    list-style: square;
-  }
+.games ul{	
+	padding-left: 700px;
+}
+
+.music ul li{
+	display: inline;
+}
+
+.music ul{	
+	padding-left: 650px;
+}
+
+table#media{
+	  table-layout: fixed;
+    width: 1000px;
+}
+
+
+.navbar .nav > li > a:hover{
+color:#cc412a !important;
+-webkit-transition:background 1s ease;
+-moz-transition:background 1s ease;
+-o-transition:background 1s ease;
+transition:background 1s ease;
 }

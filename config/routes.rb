@@ -1,27 +1,13 @@
 MediaLibrary::Application.routes.draw do
+  
   resources :people
-
   resources :studios
-
-
   resources :artists
-
-
   resources :authors
-
-
   resources :directors
-
-
   resources :games
-
-
   resources :musics
-
-
   resources :books
-
-
   resources :movies
 
 
