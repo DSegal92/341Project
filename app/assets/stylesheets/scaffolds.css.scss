@@ -24,6 +24,7 @@
 
 .container_16{
   background-color: #fff;
+  padding-top: 40px;
   padding-left: 40px;
   padding-right: 40px;
 }
@@ -72,6 +73,65 @@ table#media{
     width: 1000px;
 }
 
+.booksc, .booksb
+{ display: block; background: url('bookButton.png') no-repeat; }
+ 
+.booksc { background-position: -0px -0px; width: 434px; height: 245px; }
+.booksb { background-position: -0px -245px; width: 434px; height: 245px; }
+
+
+.booksButton{
+    display: block; 
+    width: 434px; height: 245px; 
+    background-image: url('/assets/bookButton.png'); 
+    background-position: bottom; 
+}
+
+.booksButton:hover {
+    background-position: top; 
+}
+
+.gamesButton{
+    display: block; 
+    width: 434px; height: 245px; 
+    background-image: url('/assets/gameButton.png'); 
+    background-position: bottom; 
+}
+
+.gamesButton:hover {
+    background-position: top; 
+}
+
+.moviesButton{
+    display: block; 
+    width: 434px; height: 245px; 
+    background-image: url('/assets/movieButton.png'); 
+    background-position: top; 
+}
+
+.moviesButton:hover {
+    background-position: bottom; 
+}
+
+.no_space{
+  margin-left: -36px;
+}
+
+.centerDiv{
+  padding-left: 36px;
+}
+
+
+.musicButton{
+    display: block; 
+    width: 434px; height: 245px; 
+    background-image: url('/assets/musicButton.png'); 
+    background-position: bottom; 
+}
+
+.musicButton:hover {
+    background-position: top; 
+}
 
 .navbar .nav > li > a:hover{
 color:#cc412a !important;
@@ -80,3 +140,16 @@ color:#cc412a !important;
 -o-transition:background 1s ease;
 transition:background 1s ease;
 }
+
+/* Footer
+-------------------------------------------------- */
+.footer {
+    font-family: 'Georgia', sans-serif;
+    font-size: 14px;
+    color: #777;
+}
+
+.footer a:link {color:      #777;}      /* unvisited link */
+.footer a:visited {color:   #777;}  /* visited link */
+.footer a:hover {color:     #f24738;}  /* mouse over link */
+.footer a:active {color:    #777;}
