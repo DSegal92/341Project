@@ -61,7 +61,7 @@ class AuthorsController < ApplicationController
 
     respond_to do |format|
       if @author.update_attributes(params[:author])
-        format.html { redirect_to @author, notice: 'Author was successfully updated.' }
+        format.html { redirect_to "/books", notice: 'Author was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

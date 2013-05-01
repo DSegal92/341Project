@@ -44,7 +44,7 @@ class DirectorsController < ApplicationController
 
     respond_to do |format|
       if @director.save
-        format.html { redirect_to @director, notice: 'Director was successfully created.' }
+        format.html { redirect_to "/movies", notice: 'Director was successfully created.' }
         format.json { render json: @director, status: :created, location: @director }
       else
         format.html { render action: "new" }
@@ -60,7 +60,7 @@ class DirectorsController < ApplicationController
 
     respond_to do |format|
       if @director.update_attributes(params[:director])
-        format.html { redirect_to @director, notice: 'Director was successfully updated.' }
+        format.html { redirect_to "/movies", notice: 'Director was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

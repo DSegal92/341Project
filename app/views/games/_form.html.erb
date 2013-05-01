@@ -12,29 +12,29 @@
   <% end %>
   <div class="grid_7">
   <div class="field">
-    <%= f.label :title %><br />
+    <%= f.label :title, :class => "form_field" %><br />
     <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label :studio %><br />
+    <%= f.label :studio, :class => "form_field" %><br />
     <%= f.collection_select :studio_ids, @studios, :id, :name %>
   </div>
 
   <div class="field">
-    <%= f.label :year %><br />
+    <%= f.label :year, :class => "form_field" %><br />
     <%= f.number_field :year %>
   </div>
 
   <div class="field">
-    <%= f.label :rating %><br />
+    <%= f.label :rating, :class => "form_field" %><br />
     <%= f.number_field :rating %>
   </div>
   <div class="field">
-    <%= f.label :genre %><br />
+    <%= f.label :genre, :class => "form_field" %><br />
     <%= f.text_field :genre %>
   </div>
     <div class="field">
-    <%= f.label :person %><br />
+    <%= f.label :person, :class => "form_field" %><br />
     <%= f.collection_select :person_id, @people, :id, :name %>
   </div>
 </div>

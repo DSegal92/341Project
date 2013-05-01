@@ -44,7 +44,7 @@ class StudiosController < ApplicationController
 
     respond_to do |format|
       if @studio.save
-        format.html { redirect_to @studio, notice: 'Studio was successfully created.' }
+        format.html { redirect_to "/games", notice: 'Studio was successfully created.' }
         format.json { render json: @studio, status: :created, location: @studio }
       else
         format.html { render action: "new" }
@@ -60,7 +60,7 @@ class StudiosController < ApplicationController
 
     respond_to do |format|
       if @studio.update_attributes(params[:studio])
-        format.html { redirect_to @studio, notice: 'Studio was successfully updated.' }
+        format.html { redirect_to "/games", notice: 'Studio was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

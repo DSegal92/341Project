@@ -47,7 +47,7 @@ class MusicsController < ApplicationController
 
     respond_to do |format|
       if @music.save
-        format.html { redirect_to @music, notice: 'Music was successfully created.' }
+        format.html { redirect_to "/musics", notice: 'Music was successfully created.' }
         format.json { render json: @music, status: :created, location: @music }
       else
         format.html { render action: "new" }
@@ -63,7 +63,7 @@ class MusicsController < ApplicationController
 
     respond_to do |format|
       if @music.update_attributes(params[:music])
-        format.html { redirect_to @music, notice: 'Music was successfully updated.' }
+        format.html { redirect_to "/musics", notice: 'Music was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
