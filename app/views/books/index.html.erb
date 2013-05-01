@@ -55,7 +55,7 @@
           
       </tr>
       <tr>
-        <td colspan=6>
+        <td colspan=5>
           <div class="test">
             <b>Description:</b>
              <%= Book.find_by_sql('SELECT description 
@@ -66,18 +66,16 @@
               FROM Books 
               WHERE books.id = ' + book.id.to_s + '')[0]['comments'].truncate(140) %>
               <ul>
-                <li class="spacer"><%= link_to 'Show', book %></li>
                 <li class="spacer"><%= link_to 'Edit', edit_book_path(book) %></li>
-                <li class="spacer"><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></li>
               </ul>
         </td>
       </tr>
       <% end %>
     </table>
     <br>
-    <%= link_to 'New Book', new_book_path %>
+    <%= button_to 'New Book', new_book_path, :method => :get %>
     <br>
-    <%= link_to 'New Author', new_author_path %>
+    <%= button_to 'New Author', new_author_path, :method => :get, :class=> 'creator'%>
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
   </div>

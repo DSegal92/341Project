@@ -53,7 +53,7 @@
                                 WHERE people.id = musics.person_id AND musics.id = ' + music.id.to_s + '')[0]['name'] %></td>
   </tr>
   <tr>
-        <td colspan=6>
+        <td colspan=5>
           <div class="test">
             <b>Tracks:</b>
              <%= Music.find_by_sql('SELECT tracks 
@@ -64,9 +64,7 @@
               FROM Musics 
               WHERE musics.id = ' + music.id.to_s + '')[0]['comments'].truncate(140) %>
               <ul>
-                <li class="spacer"><%= link_to 'Show', music %></li>
                 <li class="spacer"><%= link_to 'Edit', edit_music_path(music) %></li>
-                <li class="spacer"><%= link_to 'Destroy', music, method: :delete, data: { confirm: 'Are you sure?' } %></li>
               </ul>
         </td>
       </tr>

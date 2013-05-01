@@ -45,7 +45,7 @@ class AuthorsController < ApplicationController
 
     respond_to do |format|
       if @author.save
-        format.html { redirect_to @author, notice: 'Author was successfully created.' }
+        format.html { redirect_to "/books", notice: 'Author was successfully created.' }
         format.json { render json: @author, status: :created, location: @author }
       else
         format.html { render action: "new" }

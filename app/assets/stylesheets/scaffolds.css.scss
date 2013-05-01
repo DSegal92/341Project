@@ -29,12 +29,16 @@
   padding-right: 40px;
 }
 
+#edit{
+  width: 20px !important;
+}
+
 .centered{
   text-align: center;
 }
 
 .spacer{
-  margin-right: 20px;
+  margin-left: 110px;
 }
 
 .books ul li{
@@ -121,7 +125,29 @@ table#media{
   padding-left: 36px;
 }
 
+.text{
+  width: 600px;
+  height: 190px;
+}
 
+.submit{
+  padding-left: 320px;
+  padding-top: 100px;
+}
+
+.lower{
+  margin-bottom: 80px;
+}
+
+.delete{
+  margin-left: 480px;
+  margin-top: -90px;
+}
+
+.creator{
+  margin-left: 150px;
+  margin-top: -127px;
+}
 .musicButton{
     display: block; 
     width: 434px; height: 245px; 

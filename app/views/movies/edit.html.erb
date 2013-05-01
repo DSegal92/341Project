@@ -1,6 +1,10 @@
-<h1>Editing movie</h1>
+<div class="container_16">
+	<div class="grid_16">
+		<h1>Editing movie</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @movie %> |
-<%= link_to 'Back', movies_path %>
+<%=button_to "Delete",movie_path(@movie), 'data-method' => :delete, :class => "delete", :confirm => "Are you sure ?", :method => :get, :class=> "delete" %> 
+
+</div>
+</div>

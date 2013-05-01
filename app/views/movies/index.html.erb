@@ -55,7 +55,7 @@
           
       </tr>
       <tr>
-        <td colspan=6>
+        <td colspan=5>
           <div class="test">
             <b>Description:</b>
              <%= Movie.find_by_sql('SELECT description 
@@ -66,18 +66,17 @@
               FROM Movies 
               WHERE movies.id = ' + movie.id.to_s + '')[0]['comments'].truncate(140) %>
               <ul>
-                <li class="spacer"><%= link_to 'Show', movie %></li>
                 <li class="spacer"><%= link_to 'Edit', edit_movie_path(movie) %></li>
-                <li class="spacer"><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+
               </ul>
         </td>
       </tr>
       <% end %>
     </table>
     <br>
-    <%= link_to 'New Movie', new_movie_path %>
+    <%= button_to 'New Movie', new_movie_path, :method => :get %>
     <br>
-    <%= link_to 'New Director', new_director_path %>
+    <%= button_to 'New Director', new_director_path, :method => :get, :class=> 'creator'%>
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
   </div>

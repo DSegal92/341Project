@@ -1,6 +1,11 @@
-<h1>Editing book</h1>
+<div class="container_16">
+	<div class="grid_16">
+		<h1>Editing book - <%= Book.find_by_sql('SELECT title FROM Books B WHERE B.id = ' + params[:id] + '')[0]['title'] %></h1>
 
-<%= render 'form' %>
+		<%= render 'form' %>
 
-<%= link_to 'Show', @book %> |
-<%= link_to 'Back', books_path %>
+
+		<%= button_to "Delete Book", {:controller => :books, :action => 'destroy', :id => @book.id }, :method => :delete, :confirm => "Are you sure ?", :class => "delete" %>
+
+	</div>
+</div>
