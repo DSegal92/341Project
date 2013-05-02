@@ -1,85 +1,82 @@
 class PeopleController < ApplicationController
-  # GET /peoples
-  # GET /peoples.json
+  # GET /people
+  # GET /people.json
   def index
     @people = Person.all
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @peoples }
+      format.json { render json: @people }
     end
   end
 
-  # GET /peoples/1
-  # GET /peoples/1.json
+  # GET /people/1
+  # GET /people/1.json
   def show
-    @people = Person.find(params[:id])
+    @person = Person.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @people }
+      format.json { render json: @person }
     end
   end
 
-  # GET /peoples/new
-  # GET /peoples/new.json
+  # GET /people/new
+  # GET /people/new.json
   def new
-    @people = Person.new
-    @people = Person.all
-    @studios = Studio.all
+    @person = Person.new
+
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @people }
+      format.json { render json: @person }
     end
   end
 
-  # GET /peoples/1/edit
+  # GET /people/1/edit
   def edit
-    @people = Person.find(params[:id])
-    @studios = Studio.all
-    @people = Person.all
+    @person = Person.find(params[:id])
   end
 
-  # POST /peoples
-  # POST /peoples.json
+  # POST /people
+  # POST /people.json
   def create
-    @people = Person.new(params[:people])
+    @person = Person.new(params[:person])
 
     respond_to do |format|
-      if @people.save
-        format.html { redirect_to @people, notice: 'Person was successfully created.' }
-        format.json { render json: @people, status: :created, location: @people }
+      if @person.save
+        format.html { redirect_to "/people", notice: 'Person was successfully created.' }
+        format.json { render json: @person, status: :created, location: @person }
       else
         format.html { render action: "new" }
-        format.json { render json: @people.errors, status: :unprocessable_entity }
+        format.json { render json: @person.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PUT /peoples/1
-  # PUT /peoples/1.json
+  # PUT /people/1
+  # PUT /people/1.json
   def update
-    @people = Person.find(params[:id])
+    @person = Person.find(params[:id])
 
     respond_to do |format|
-      if @people.update_attributes(params[:people])
-        format.html { redirect_to @people, notice: 'Person was successfully updated.' }
+      if @person.update_attributes(params[:person])
+        format.html { redirect_to "/people", notice: 'Person was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
-        format.json { render json: @people.errors, status: :unprocessable_entity }
+        format.json { render json: @person.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /peoples/1
-  # DELETE /peoples/1.json
+  # DELETE /people/1
+  # DELETE /people/1.json
   def destroy
-    @people = Person.find(params[:id])
-    @people.destroy
+    @person = Person.find(params[:id])
+    @person.destroy
 
     respond_to do |format|
-      format.html { redirect_to peoples_url }
+      format.html { redirect_to people_url }
       format.json { head :no_content }
     end
   end

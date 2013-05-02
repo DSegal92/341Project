@@ -1,11 +1,11 @@
-<h1>Listing people</h1>
+<div class="container_16">
+  <div class="grid_16">
+    <h1>Listing people</h1>
 
-<table>
+<table id="media" class="table-hover">
   <tr>
-    <th>Name</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <td><b>Name</b></td>
+
   </tr>
 
 <% @people.each do |person| %>
@@ -13,13 +13,14 @@
       <td><%= Person.find_by_sql('SELECT name 
                           FROM People
                           WHERE people.id = ' + person.id.to_s + '')[0]['name'] %></td>
-    <td><%= link_to 'Show', person %></td>
-    <td><%= link_to 'Edit', edit_person_path(person) %></td>
-    <td><%= link_to 'Destroy', person, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  
+      <td><%= link_to 'Edit', edit_person_path(person) %></td>
   </tr>
 <% end %>
 </table>
 
-<br />
+<br>
 
 <%= link_to 'New Person', new_person_path %>
+</div>
+</div>

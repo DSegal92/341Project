@@ -1,6 +1,6 @@
 <div class="container_16">
 	<div class="grid_16">
-		<h1>Editing movie</h1>
+		<h1>Editing movie - <%= Movie.find_by_sql('SELECT title FROM Movies M WHERE M.id = ' + params[:id] + '')[0]['title'] %></h1>
 
 <%= render 'form' %>
 

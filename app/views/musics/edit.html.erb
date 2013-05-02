@@ -1,6 +1,6 @@
 <div class="container_16">
   <div class="grid_16">
-  	<h1>Editing music</h1>
+  	<h1>Editing music - <%= Music.find_by_sql('SELECT title FROM Musics M WHERE M.id = ' + params[:id] + '')[0]['title'] %></h1>
 
 <%= render 'form' %>
 
