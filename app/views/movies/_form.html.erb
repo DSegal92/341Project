@@ -15,10 +15,14 @@
     <%= f.label :title, :class => "form_field" %><br />
     <%= f.text_field :title %>
   </div>
-  <div class="field">
-    <%= f.label :director, :class => "form_field" %><br />
-    <%= f.collection_select :director_ids, @directors, :id, :name %>
-  </div>
+
+  Director:
+  <% for director in Director.find(:all) %>
+<div>
+  <%= check_box_tag "movie[director_ids][]", director.id, @movie.directors.include?(director) %>
+  <%= director.name %>
+</div>
+  <% end %>
 
   <div class="field">
     <%= f.label :year, :class => "form_field" %><br />

@@ -2,6 +2,45 @@ class MoviesController < ApplicationController
   # GET /movies
   # GET /movies.json
   def index
+    @threeOrMore = Director.find_by_sql(" SELECT D.name, D.id
+                                  FROM Directors D, Movies M, Directors_Movies C
+                                  WHERE D.id = C.director_id AND C.movie_id = M.id AND
+                                    M.rating >= 3
+                                  GROUP BY D.id
+                                  HAVING COUNT(M.id) >= 3")
+    @hasMost = Person.find_by_sql("SELECT P.name
+                                   FROM People P, Movies M, (SELECT COUNT(G1.id) AS num_movies, G1.person_id 
+                                   FROM Movies G1
+                                   GROUP BY G1.person_id) AS T1
+                                    WHERE NOT EXISTS (
+                                      SELECT COUNT(G2.id) AS num_movies, G2.person_id 
+                                      FROM Movies G2
+                                      GROUP BY G2.person_id
+                                      HAVING COUNT(G2.id) > T1.num_movies)").first()
+     @genreOnly = Director.find_by_sql("SELECT D.name
+                                     FROM Directors D
+                                     WHERE NOT EXISTS (
+                                       SELECT *
+                                       FROM Movies M, Directors_Movies C
+                                       WHERE C.director_id = D.id AND C.movie_id = M.id AND M.genre <> 'Comedy Horror')")
+    @good = Director.find_by_sql("SELECT D.name
+                                FROM Directors D
+                                WHERE NOT EXISTS (
+                                  SELECT *
+                                  FROM Movies M, Directors_Movies C
+                                  WHERE M.rating < 3 AND D.id = C.Director_id
+                                    AND C.movie_id = M.id)")
+    @fan = Person.find_by_sql("SELECT P.name
+                               FROM People P
+                               WHERE NOT EXISTS(
+                                 SELECT M.title
+                                 FROM Movies M, Directors D, Directors_Movies C
+                                 WHERE M.director_id = C.director_id AND C.director_id = D.id
+                                   AND D.name = 'Bethesda'
+                                   AND M.person_id NOT IN(
+                                     SELECT P1.id
+                                     FROM People P1
+                                     WHERE P1.id = M.person_id))")
     @movies = Movie.all
 
     respond_to do |format|
@@ -79,7 +118,7 @@ class MoviesController < ApplicationController
     @movie.destroy
 
     respond_to do |format|
-      format.html { redirect_to movies_url }
+      format.html { redirect_to "/movies" }
       format.json { head :no_content }
     end
   end

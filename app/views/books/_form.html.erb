@@ -15,10 +15,14 @@
     <%= f.label :title, :class => "form_field" %><br />
     <%= f.text_field :title %>
   </div>
-  <div class="field">
-    <%= f.label :author, :class => "form_field" %><br />
-    <%= f.collection_select :author_ids, @authors, :id, :name %>
-  </div>
+  
+  Author:
+  <% for author in Author.find(:all) %>
+<div>
+  <%= check_box_tag "book[author_ids][]", author.id, @book.authors.include?(author) %>
+  <%= author.name %>
+</div>
+  <% end %>
 
   <div class="field">
     <%= f.label :year, :class => "form_field" %><br />

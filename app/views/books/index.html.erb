@@ -1,10 +1,63 @@
+
 <div class="books">
   <div class="container_16"><h1>My Books</h1>
     <br>
+
+
+  <div class="facts">
+        <h3> View Quick Facts </h3>
+        <div class="facts2">
+    <b>Authors with 3 or more 3 Star Books: </b>
+      <% if @threeOrMore.nil? || @threeOrMore.empty? %>
+         N/A
+      <% else %>
+      <% @threeOrMore.each do |a| %>
+        <%= a.name %>
+      <% end %>
+      <% end %>
+
+    <br>
+    <b>Person Who Owns the Most Books:</b>
+    <%= @hasMost.name %>
+       
+    <br>
+    <b>Authors Who Only Write Fantasy:</b>
+      <% if @genreOnly.nil? || @genreOnly.empty? %>
+        N/A
+      <% else %>
+        <% @genreOnly.each do |a| %>
+          <%= a.name %>
+        <% end %>
+      <% end %>
+    
+    <br>
+    <b> Authors Whose Books are All Rated > 3:  </b>
+    <% if @good.nil? || @good.empty? %>
+      N/A
+    <% else %>
+      <% @good.each do |a| %>
+        <%= a.name %>
+      <% end %>
+    <% end %>
+
+    <br>
+    <b> Users who own every Neil Gaiman Book: </b>
+      <% if @fan.nil? %>
+        N/A
+      <% else %>
+        <% @fan.each do |a| %>
+          <%= a.name %>
+        <% end %>
+    <% end %> 
+  </div>
+  </div>
+   <br>
+
+
     <table id="media" class="table-hover">
       <tr>
         <td><b>Title</b></td>
-        <td><b>Author</b></td>
+        <td><b>Author(s)</b></td>
         <td><b>Year</b></td>
         <td><b>Rating</b></td>
         <td><b>Genre</b></td>
@@ -12,15 +65,16 @@
       </tr>
 
       <% @books.each do |book| %>
-
-      <tr>
+      <tr>       
         <td><%= Book.find_by_sql('SELECT title 
           FROM Books 
           WHERE books.id = ' + book.id.to_s + '')[0]['title'] %></td>
 
-        <td ><%= Author.find_by_sql('SELECT name 
+        <td ><% Author.find_by_sql('SELECT name 
           FROM Authors A, Books B, Authors_Books C 
-          WHERE A.id = C.author_id AND C.book_id = B.id And B.id = ' + book.id.to_s + '')[0]['name'] %></td>
+          WHERE A.id = C.author_id AND C.book_id = B.id And B.id = ' + book.id.to_s + '').each do |author| %>
+          <br><%= author.name %>
+          <% end %></td>
 
         <td ><%= Book.find_by_sql('SELECT year 
           FROM Books 
@@ -71,7 +125,9 @@
         </td>
       </tr>
       <% end %>
+  
     </table>
+    
     <br>
     <%= button_to 'New Book', new_book_path, :method => :get %>
     <br>

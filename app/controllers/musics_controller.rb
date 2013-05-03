@@ -2,6 +2,45 @@ class MusicsController < ApplicationController
   # GET /musics
   # GET /musics.json
   def index
+    @threeOrMore = Artist.find_by_sql(" SELECT A.name, A.id
+                              FROM Artists A, Musics M, Artists_Musics C
+                              WHERE A.id = C.artist_id AND C.music_id = M.id AND
+                                M.rating >= 3
+                              GROUP BY A.id
+                              HAVING COUNT(M.id) >= 3")
+    @hasMost = Person.find_by_sql("SELECT P.name
+                                   FROM People P, Musics M, (SELECT COUNT(G1.id) AS num_musics, G1.person_id 
+                                   FROM Musics G1
+                                   GROUP BY G1.person_id) AS T1
+                                    WHERE NOT EXISTS (
+                                      SELECT COUNT(G2.id) AS num_musics, G2.person_id 
+                                      FROM Musics G2
+                                      GROUP BY G2.person_id
+                                      HAVING COUNT(G2.id) > T1.num_musics)").first()
+    @genreOnly = Artist.find_by_sql("SELECT A.name
+                                    FROM Artists A
+                                    WHERE NOT EXISTS (
+                                      SELECT *
+                                      FROM Musics M, Artists_Musics C
+                                      WHERE C.artist_id = A.id AND C.music_id = M.id AND M.genre <> 'Anti-folk')")
+    @good = Artist.find_by_sql("SELECT A.name
+                                FROM Artists A
+                                WHERE NOT EXISTS (
+                                  SELECT *
+                                  FROM Musics M, Artists_Musics C
+                                  WHERE M.rating < 3 AND A.id = C.Artist_id
+                                    AND C.music_id = M.id)")
+    @fan = Person.find_by_sql("SELECT P.name
+                               FROM People P
+                               WHERE NOT EXISTS(
+                                 SELECT M.title
+                                 FROM Musics M, Artists A, Artists_Musics C
+                                 WHERE M.artist_id = C.artist_id AND C.artist_id = A.id
+                                   AND A.name = 'Bethesda'
+                                   AND M.person_id NOT IN(
+                                     SELECT P1.id
+                                     FROM People P1
+                                     WHERE P1.id = M.person_id))")
     @musics = Music.all
 
     respond_to do |format|
@@ -79,7 +118,7 @@ class MusicsController < ApplicationController
     @music.destroy
 
     respond_to do |format|
-      format.html { redirect_to musics_url }
+      format.html { redirect_to "/musics" }
       format.json { head :no_content }
     end
   end

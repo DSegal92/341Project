@@ -1,10 +1,59 @@
 <div class="games">
   <div class="container_16"><h1>My Games</h1>
     <br>
+
+      <div class="facts">
+        <h3> View Quick Facts </h3>
+        <div class="facts2">
+    <b>Studios with 3 or more 3 Star Games: </b>
+      <% if @threeOrMore.empty? %>
+         N/A
+      <% else %>
+      <% @threeOrMore.each do |a| %>
+        <%= a.name%>
+      <% end %>
+      <% end %>
+
+    <br>
+    <b>Person Who Owns the Most Games:</b>
+    <%= @hasMost.name %>
+       
+    <br>
+    <b>Studios That Only Make Sports Games:</b>
+      <% if @genreOnly.nil? || @genreOnly.empty? %>
+        N/A
+      <% else %>
+        <% @genreOnly.each do |a| %>
+          <%= a.name %>
+        <% end %>
+      <% end %>
+    
+    <br>
+    <b> Studios Whose Games are All Rated > 3:  </b>
+    <% if @good.nil? || @good.empty? %>
+      N/A
+    <% else %>
+      <% @good.each do |a| %>
+        <%= a.name %>
+      <% end %>
+    <% end %>
+
+    <br>
+    <b> Users who own every Bethesda Game: </b>
+      <% if @fan.nil? %>
+        N/A
+      <% else %>
+        <% @fan.each do |a| %>
+          <%= a.name %>
+        <% end %>
+    <% end %> 
+  </div>
+  </div>
+  <br>
     <table id="media" class="table-hover">
       <tr>
         <td><b>Title</b></td>
-        <td><b>Director</b></td>
+        <td><b>Studio(s)</b></td>
         <td><b>Year</b></td>
         <td><b>Rating</b></td>
         <td><b>Genre</b></td>
@@ -17,9 +66,11 @@
                               FROM Games
                               WHERE games.id = ' + game.id.to_s + '')[0]['title'] %></td>
 
-    <td><%= Studio.find_by_sql('SELECT name 
+    <td><% Studio.find_by_sql('SELECT name 
                                 FROM Studios INNER JOIN games_studios ON studios.id = games_studios.studio_id 
-                                WHERE games_studios.game_id = ' + game.id.to_s + '')[0]['name'] %></td>
+                                WHERE games_studios.game_id = ' + game.id.to_s + '').each do |studio| %>
+                                <br> <%= studio.name %>
+                                <% end %> </td>
 
     <td><%= Game.find_by_sql('SELECT year 
                               FROM Games

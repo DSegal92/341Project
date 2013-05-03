@@ -15,11 +15,14 @@
     <%= f.label :title, :class => "form_field" %><br />
     <%= f.text_field :title, :class => "test2" %>
   </div>
-  <div class="field">
-    <%= f.label :artist, :class => "form_field" %><br />
-    <%= f.collection_select :artist_ids, @artists, :id, :name, :class => "test2" %>
-  </div>
-
+  
+  Artist:
+  <% for artist in Artist.find(:all) %>
+<div>
+  <%= check_box_tag "music[artist_ids][]", artist.id, @music.artists.include?(artist) %>
+  <%= artist.name %>
+</div>
+  <% end %>
   <div class="field">
     <%= f.label :year, :class => "form_field" %><br />
     <%= f.number_field :year, :class => "test2" %>

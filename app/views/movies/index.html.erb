@@ -1,16 +1,65 @@
 <div class="movies">
   <div class="container_16"><h1>My Movies</h1>
     <br>
+
+          <div class="facts">
+        <h3> View Quick Facts </h3>
+        <div class="facts2">
+    <b>Directors with 3 or more 3 Star Movies: </b>
+      <% if @threeOrMore.empty? %>
+         N/A
+      <% else %>
+      <% @threeOrMore.each do |a| %>
+        <%= a.name%>
+      <% end %>
+      <% end %>
+
+    <br>
+    <b>Person Who Owns the Most Movies:</b>
+    <%= @hasMost.name %>
+       
+    <br>
+    <b>Directors That Only Make Comedy Horror Movies:</b>
+      <% if @genreOnly.nil? || @genreOnly.empty? %>
+        N/A
+      <% else %>
+        <% @genreOnly.each do |a| %>
+          <%= a.name %>
+        <% end %>
+      <% end %>
+    
+    <br>
+    <b>Directors Whose Movies are All Rated > 3:  </b>
+    <% if @good.nil? || @good.empty? %>
+      N/A
+    <% else %>
+      <% @good.each do |a| %>
+        <%= a.name %>
+      <% end %>
+    <% end %>
+
+    <br>
+    <b> Users who own every Bethesda Game: </b>
+      <% if @fan.nil? %>
+        N/A
+      <% else %>
+        <% @fan.each do |a| %>
+          <%= a.name %>
+        <% end %>
+    <% end %> 
+  </div>
+  </div>
+  <br>
     <table id="media" class="table-hover">
       <tr>
         <td><b>Title</b></td>
-        <td><b>Director</b></td>
+        <td><b>Director(s)</b></td>
         <td><b>Year</b></td>
         <td><b>Rating</b></td>
         <td><b>Genre</b></td>
         <td><b>Owner</b></td>
       </tr>
-
+      <%= @bayFan2 %>
       <% @movies.each do |movie| %>
 
       <tr>
@@ -18,9 +67,11 @@
           FROM Movies 
           WHERE movies.id = ' + movie.id.to_s + '')[0]['title'] %></td>
 
-        <td ><%= Director.find_by_sql('SELECT name 
+        <td ><% Director.find_by_sql('SELECT name 
           FROM Directors A, Movies B, Directors_Movies C 
-          WHERE A.id = C.director_id AND C.movie_id = B.id And B.id = ' + movie.id.to_s + '')[0]['name'] %></td>
+          WHERE A.id = C.director_id AND C.movie_id = B.id And B.id = ' + movie.id.to_s + '').each do |director| %>
+          <%= director.name %><br>
+          <% end %></td>
 
         <td ><%= Movie.find_by_sql('SELECT year 
           FROM Movies 

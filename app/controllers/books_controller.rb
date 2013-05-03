@@ -3,6 +3,44 @@ class BooksController < ApplicationController
   # GET /books.json
 
   def index
+    @threeOrMore = Author.find_by_sql(" SELECT A.name, A.id
+                                        FROM Authors A, Books B, Authors_Books C
+                                        WHERE A.id = C.author_id AND C.book_id = B.id AND
+                                          B.rating >= 3
+                                        GROUP BY A.id
+                                        HAVING COUNT(B.id) >= 3")
+    @hasMost = Person.find_by_sql("SELECT P.name
+                                   FROM People P, Books B, (SELECT COUNT(B1.id) AS num_books, B1.person_id 
+                                   FROM Books B1
+                                   GROUP BY B1.person_id) AS T1
+                                      WHERE NOT EXISTS (
+    SELECT COUNT(B2.id) AS num_books, B2.person_id 
+    FROM Books B2
+    GROUP BY B2.person_id
+    HAVING COUNT(B2.id) > T1.num_books)
+  ").first()
+
+    @genreOnly = Author.find_by_sql("
+  SELECT A.name
+  FROM Authors A
+  WHERE NOT EXISTS (
+    SELECT *
+    FROM Books B, Authors_Books C
+    WHERE C.author_id = A.id AND C.book_id = B.id AND B.genre <> 'Fantasy')
+  "
+  )
+
+    @good = Author.find_by_sql("
+  SELECT A.name
+  FROM Authors A
+  WHERE NOT EXISTS (
+    SELECT *
+    FROM Books B, Authors_Books C
+    WHERE B.rating < 3 AND A.id = C.Author_id
+      AND C.book_id = B.id)
+  ")
+
+  
     @books = Book.all
     respond_to do |format|
       format.html # index.html.erb
@@ -80,7 +118,7 @@ class BooksController < ApplicationController
     @book.destroy
 
     respond_to do |format|
-      format.html { redirect_to books_url }
+      format.html { redirect_to "/books" }
       format.json { head :no_content }
     end
   end

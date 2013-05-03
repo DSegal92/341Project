@@ -15,10 +15,14 @@
     <%= f.label :title, :class => "form_field" %><br />
     <%= f.text_field :title %>
   </div>
-  <div class="field">
-    <%= f.label :studio, :class => "form_field" %><br />
-    <%= f.collection_select :studio_ids, @studios, :id, :name %>
-  </div>
+
+  Studio: <br>
+   <% for studio in Studio.find(:all) %>
+    <div>
+      <%= check_box_tag "game[studio_ids][]", studio.id, @game.studios.include?(studio) %>
+      <%= studio.name %>
+    </div>
+  <% end %>
 
   <div class="field">
     <%= f.label :year, :class => "form_field" %><br />

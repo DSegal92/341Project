@@ -1,10 +1,59 @@
 <div class="music">
   <div class="container_16"><h1>My Music</h1>
     <br>
+
+      <div class="facts">
+        <h3> View Quick Facts </h3>
+        <div class="facts2">
+    <b>Studios with 3 or more 3 Star Games: </b>
+      <% if @threeOrMore.empty? %>
+         N/A
+      <% else %>
+      <% @threeOrMore.each do |a| %>
+        <%= a.name%>
+      <% end %>
+      <% end %>
+
+    <br>
+    <b>Person Who Owns the Most Games:</b>
+    <%= @hasMost.name %>
+       
+    <br>
+    <b>Studios That Only Make Sports Games:</b>
+      <% if @genreOnly.nil? || @genreOnly.empty? %>
+        N/A
+      <% else %>
+        <% @genreOnly.each do |a| %>
+          <%= a.name %>
+        <% end %>
+      <% end %>
+    
+    <br>
+    <b> Studios Whose Games are All Rated > 3:  </b>
+    <% if @good.nil? || @good.empty? %>
+      N/A
+    <% else %>
+      <% @good.each do |a| %>
+        <%= a.name %>
+      <% end %>
+    <% end %>
+
+    <br>
+    <b> Users who own every Bethesda Game: </b>
+      <% if @fan.nil? %>
+        N/A
+      <% else %>
+        <% @fan.each do |a| %>
+          <%= a.name %>
+        <% end %>
+    <% end %> 
+  </div>
+  </div>
+  <br>
     <table id="media" class="table-hover">
       <tr>
         <td><b>Title</b></td>
-        <td><b>Author</b></td>
+        <td><b>Artist(s)</b></td>
         <td><b>Year</b></td>
         <td><b>Rating</b></td>
         <td><b>Genre</b></td>
@@ -18,9 +67,11 @@
                                FROM Musics 
                                WHERE musics.id = ' + music.id.to_s + '')[0]['title'] %></td>
 
-    <td><%= Artist.find_by_sql('SELECT name 
+    <td><% Artist.find_by_sql('SELECT name 
                                 FROM Artists INNER JOIN artists_musics ON artists.id = artists_musics.artist_id 
-                                WHERE artists_musics.music_id = ' + music.id.to_s + '')[0]['name'] %></td>
+                                WHERE artists_musics.music_id = ' + music.id.to_s + '').each do |artist| %>
+                                <%= artist.name %><br>
+                                 <% end %></td>
     <td><%= Music.find_by_sql('SELECT year
                                FROM Musics 
                                WHERE musics.id = ' + music.id.to_s + '')[0]['year'] %></td>

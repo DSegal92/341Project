@@ -2,6 +2,50 @@ class GamesController < ApplicationController
   # GET /games
   # GET /games.json
   def index
+      @threeOrMore = Studio.find_by_sql(" SELECT S.name, S.id
+                                        FROM Studios S, Games G, Games_Studios C
+                                        WHERE S.id = C.studio_id AND C.game_id = G.id AND
+                                          G.rating >= 3
+                                        GROUP BY S.id
+                                        HAVING COUNT(G.id) >= 3")
+
+      @hasMost = Person.find_by_sql("SELECT P.name
+                                     FROM People P, Games G, (SELECT COUNT(G1.id) AS num_games, G1.person_id 
+                                     FROM Games G1
+                                     GROUP BY G1.person_id) AS T1
+                                      WHERE NOT EXISTS (
+                                        SELECT COUNT(G2.id) AS num_games, G2.person_id 
+                                        FROM Games G2
+                                        GROUP BY G2.person_id
+                                        HAVING COUNT(G2.id) > T1.num_games)").first()
+
+       @genreOnly = Studio.find_by_sql("SELECT S.name
+                                       FROM Studios S
+                                       WHERE NOT EXISTS (
+                                         SELECT *
+                                         FROM Games G, Games_Studios C
+                                         WHERE C.studio_id = S.id AND C.game_id = G.id AND G.genre <> 'Sports')")
+
+        @good = Studio.find_by_sql("SELECT S.name
+                                    FROM Studios S
+                                    WHERE NOT EXISTS (
+                                      SELECT *
+                                      FROM Games G, Games_Studios C
+                                      WHERE G.rating < 3 AND S.id = C.Studio_id
+                                        AND C.game_id = G.id)")
+
+        @fan = Person.find_by_sql("SELECT P.name
+                                   FROM People P
+                                   WHERE NOT EXISTS(
+                                     SELECT G.title
+                                     FROM Games G, Studios S, Games_studios C
+                                     WHERE G.studio_id = C.studio_id AND C.studio_id = S.id
+                                       AND S.name = 'Bethesda'
+                                       AND G.person_id NOT IN(
+                                         SELECT P1.id
+                                         FROM People P1
+                                         WHERE P1.id = G.person_id))")
+
     @games = Game.all
 
     respond_to do |format|
@@ -79,7 +123,7 @@ class GamesController < ApplicationController
     @game.destroy
 
     respond_to do |format|
-      format.html { redirect_to games_url }
+      format.html { redirect_to "/games" }
       format.json { head :no_content }
     end
   end
