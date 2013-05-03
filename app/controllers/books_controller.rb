@@ -9,16 +9,16 @@ class BooksController < ApplicationController
                                           B.rating >= 3
                                         GROUP BY A.id
                                         HAVING COUNT(B.id) >= 3")
+
     @hasMost = Person.find_by_sql("SELECT P.name
                                    FROM People P, Books B, (SELECT COUNT(B1.id) AS num_books, B1.person_id 
-                                   FROM Books B1
-                                   GROUP BY B1.person_id) AS T1
-                                      WHERE NOT EXISTS (
-    SELECT COUNT(B2.id) AS num_books, B2.person_id 
-    FROM Books B2
-    GROUP BY B2.person_id
-    HAVING COUNT(B2.id) > T1.num_books)
-  ").first()
+                                                            FROM Books B1
+                                                            GROUP BY B1.person_id) AS T1
+                                   WHERE NOT EXISTS (
+                                   SELECT COUNT(B2.id) AS num_books, B2.person_id 
+                                   FROM Books B2
+                                   GROUP BY B2.person_id
+                                   HAVING COUNT(B2.id) > T1.num_books)").first()
 
     @genreOnly = Author.find_by_sql("
   SELECT A.name
@@ -41,7 +41,7 @@ class BooksController < ApplicationController
   ")
 
   
-    @books = Book.all
+    @books = Book.find_by_sql("SELECT * FROM BOOKS ORDER BY title")
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @books }

@@ -46,7 +46,7 @@ class GamesController < ApplicationController
                                          FROM People P1
                                          WHERE P1.id = G.person_id))")
 
-    @games = Game.all
+    @games = Game.find_by_sql("SELECT * FROM Games Order By title")
 
     respond_to do |format|
       format.html # index.html.erb

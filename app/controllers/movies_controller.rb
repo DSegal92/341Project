@@ -41,7 +41,7 @@ class MoviesController < ApplicationController
                                      SELECT P1.id
                                      FROM People P1
                                      WHERE P1.id = M.person_id))")
-    @movies = Movie.all
+    @movies = Movie.find_by_sql("SELECT * FROM Movies Order By title")
 
     respond_to do |format|
       format.html # index.html.erb

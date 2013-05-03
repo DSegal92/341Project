@@ -41,7 +41,7 @@ class MusicsController < ApplicationController
                                      SELECT P1.id
                                      FROM People P1
                                      WHERE P1.id = M.person_id))")
-    @musics = Music.all
+    @musics = Music.find_by_sql("SELECT * FROM Musics Order By title")
 
     respond_to do |format|
       format.html # index.html.erb

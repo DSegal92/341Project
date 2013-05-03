@@ -73,7 +73,7 @@
         <td ><% Author.find_by_sql('SELECT name 
           FROM Authors A, Books B, Authors_Books C 
           WHERE A.id = C.author_id AND C.book_id = B.id And B.id = ' + book.id.to_s + '').each do |author| %>
-          <br><%= author.name %>
+          <%= author.name %><br>
           <% end %></td>
 
         <td ><%= Book.find_by_sql('SELECT year 
@@ -118,7 +118,7 @@
               <b>Comments:</b>
               <%= Book.find_by_sql('SELECT comments 
               FROM Books 
-              WHERE books.id = ' + book.id.to_s + '')[0]['comments'].truncate(140) %>
+              WHERE books.id = ' + book.id.to_s + '')[0]['comments'] %>
               <ul>
                 <li class="spacer"><%= link_to 'Edit', edit_book_path(book) %></li>
               </ul>

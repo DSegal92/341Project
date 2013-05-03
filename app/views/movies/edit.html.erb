@@ -4,7 +4,9 @@
 
 <%= render 'form' %>
 
-<%=button_to "Delete",movie_path(@movie), 'data-method' => :delete, :class => "delete", :confirm => "Are you sure ?", :method => :get, :class=> "delete" %> 
+<div class="centered">
+<%=button_to "Delete Movie",movie_path(@movie), 'data-method' => :delete, :confirm => "Are you sure ?", :method => :get %> 
+</div>
 
 </div>
 </div>
