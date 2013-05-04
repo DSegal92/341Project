@@ -3,6 +3,8 @@ class BooksController < ApplicationController
   # GET /books.json
 
   def index
+    @count = Book.find_by_sql('SELECT COUNT(*) FROM Books B GROUP BY B.id').size
+
     @threeOrMore = Author.find_by_sql(" SELECT A.name, A.id
                                         FROM Authors A, Books B, Authors_Books C
                                         WHERE A.id = C.author_id AND C.book_id = B.id AND

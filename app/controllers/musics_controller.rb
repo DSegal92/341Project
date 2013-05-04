@@ -2,6 +2,8 @@ class MusicsController < ApplicationController
   # GET /musics
   # GET /musics.json
   def index
+    @count = Music.find_by_sql('SELECT COUNT(*) FROM MUSICS M GROUP BY M.id').size
+
     @threeOrMore = Artist.find_by_sql(" SELECT A.name, A.id
                               FROM Artists A, Musics M, Artists_Musics C
                               WHERE A.id = C.artist_id AND C.music_id = M.id AND

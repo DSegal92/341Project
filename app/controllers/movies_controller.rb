@@ -2,6 +2,8 @@ class MoviesController < ApplicationController
   # GET /movies
   # GET /movies.json
   def index
+    @count = Movie.find_by_sql('SELECT COUNT(*) FROM MOVIES M GROUP BY M.id').size
+
      @threeOrMore = Director.find_by_sql(" SELECT D.name, D.id
                                   FROM Directors D, Movies M, Directors_Movies C
                                   WHERE D.id = C.director_id AND C.movie_id = M.id AND

@@ -2,6 +2,8 @@ class GamesController < ApplicationController
   # GET /games
   # GET /games.json
   def index
+    @count = Game.find_by_sql('SELECT COUNT(*) FROM Games G GROUP BY G.id').size
+
       @threeOrMore = Studio.find_by_sql(" SELECT S.name, S.id
                                         FROM Studios S, Games G, Games_Studios C
                                         WHERE S.id = C.studio_id AND C.game_id = G.id AND
