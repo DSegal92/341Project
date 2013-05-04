@@ -15,8 +15,13 @@
       <% end %>
 
     <br>
-    <b>Person Who Owns the Most Games:</b>
+    <b>Person Who Owns the Most Books:</b>
+    <% if @hasMost.nil? || @hasMost.empty? %>
+      N/A
+    <% else %>
     <%= @hasMost.name %>
+    <% end %>
+       
        
     <br>
     <b>Studios That Only Make Sports Games:</b>
