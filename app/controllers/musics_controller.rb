@@ -9,14 +9,14 @@ class MusicsController < ApplicationController
                               GROUP BY A.id
                               HAVING COUNT(M.id) >= 3")
     @hasMost = Person.find_by_sql("SELECT P.name
-                                   FROM People P, Musics M, (SELECT COUNT(G1.id) AS num_musics, G1.person_id 
-                                   FROM Musics G1
-                                   GROUP BY G1.person_id) AS T1
-                                    WHERE NOT EXISTS (
-                                      SELECT COUNT(G2.id) AS num_musics, G2.person_id 
-                                      FROM Musics G2
-                                      GROUP BY G2.person_id
-                                      HAVING COUNT(G2.id) > T1.num_musics)").first()
+                                   FROM People P, (SELECT COUNT(M1.id) AS num_musics, M1.person_id AS id
+                                                   FROM Musics M1
+                                                   GROUP BY M1.person_id) AS M1
+                                   WHERE M1.id = P.id 
+                                    AND NOT EXISTS (SELECT COUNT(M2.id), M2.person_id
+                                                    FROM Musics M2
+                                                    GROUP BY M2.person_id
+                                                    HAVING COUNT(M2.id) > M1.num_musics)").first()
     @genreOnly = Artist.find_by_sql("SELECT A.name
                                     FROM Artists A
                                     WHERE NOT EXISTS (

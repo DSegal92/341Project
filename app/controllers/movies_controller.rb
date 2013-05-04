@@ -8,15 +8,15 @@ class MoviesController < ApplicationController
                                     M.rating >= 3
                                   GROUP BY D.id
                                   HAVING COUNT(M.id) >= 3")
-    @hasMost = Person.find_by_sql("SELECT P.name
-                                   FROM People P, Movies M, (SELECT COUNT(G1.id) AS num_movies, G1.person_id 
-                                   FROM Movies G1
-                                   GROUP BY G1.person_id) AS T1
-                                    WHERE NOT EXISTS (
-                                      SELECT COUNT(G2.id) AS num_movies, G2.person_id 
-                                      FROM Movies G2
-                                      GROUP BY G2.person_id
-                                      HAVING COUNT(G2.id) > T1.num_movies)").first()
+       @hasMost = Person.find_by_sql("SELECT P.name
+                                   FROM People P, (SELECT COUNT(M1.id) AS num_movies, M1.person_id AS id
+                                                   FROM Movies M1
+                                                   GROUP BY M1.person_id) AS M1
+                                   WHERE M1.id = P.id 
+                                    AND NOT EXISTS (SELECT COUNT(M2.id), M2.person_id
+                                                    FROM Movies M2
+                                                    GROUP BY M2.person_id
+                                                    HAVING COUNT(M2.id) > M1.num_movies)").first()
      @genreOnly = Director.find_by_sql("SELECT D.name
                                      FROM Directors D
                                      WHERE NOT EXISTS (

@@ -10,14 +10,15 @@ class GamesController < ApplicationController
                                         HAVING COUNT(G.id) >= 3")
 
       @hasMost = Person.find_by_sql("SELECT P.name
-                                     FROM People P, Games G, (SELECT COUNT(G1.id) AS num_games, G1.person_id 
-                                     FROM Games G1
-                                     GROUP BY G1.person_id) AS T1
-                                      WHERE NOT EXISTS (
-                                        SELECT COUNT(G2.id) AS num_games, G2.person_id 
-                                        FROM Games G2
-                                        GROUP BY G2.person_id
-                                        HAVING COUNT(G2.id) > T1.num_games)").first()
+                                     FROM People P, (SELECT COUNT(G1.id) AS num_games, G1.person_id AS id
+                                                     FROM Games G1
+                                                     GROUP BY G1.person_id) AS G1
+                                     WHERE G1.id = P.id 
+                                      AND NOT EXISTS (SELECT COUNT(G2.id), G2.person_id
+                                                      FROM Games G2
+                                                      GROUP BY G2.person_id
+                                                      HAVING COUNT(G2.id) > G1.num_games)").first()
+
 
        @genreOnly = Studio.find_by_sql("SELECT S.name
                                        FROM Studios S

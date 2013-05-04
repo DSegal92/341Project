@@ -11,14 +11,15 @@ class BooksController < ApplicationController
                                         HAVING COUNT(B.id) >= 3")
 
     @hasMost = Person.find_by_sql("SELECT P.name
-                                   FROM People P, Books B, (SELECT COUNT(B1.id) AS num_books, B1.person_id 
-                                                            FROM Books B1
-                                                            GROUP BY B1.person_id) AS T1
-                                   WHERE NOT EXISTS (
-                                   SELECT COUNT(B2.id) AS num_books, B2.person_id 
-                                   FROM Books B2
-                                   GROUP BY B2.person_id
-                                   HAVING COUNT(B2.id) > T1.num_books)").first()
+                                   FROM People P, (SELECT COUNT(B1.id) AS num_books, B1.person_id AS id
+                                                   FROM Books B1
+                                                   GROUP BY B1.person_id) AS B1
+                                   WHERE B1.id = P.id 
+                                    AND NOT EXISTS (SELECT COUNT(B2.id), B2.person_id
+                                                    FROM Books B2
+                                                    GROUP BY B2.person_id
+                                                    HAVING COUNT(B2.id) > B1.num_books)").first()
+
 
     @genreOnly = Author.find_by_sql("
   SELECT A.name
