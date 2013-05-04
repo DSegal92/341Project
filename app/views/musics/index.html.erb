@@ -15,8 +15,12 @@
       <% end %>
 
     <br>
-    <b>Person Who Owns the Most Albums:</b>
+    <b>Person Who Owns the Most Books:</b>
+    <% if @hasMost.nil? || @hasMost.empty? %>
+      N/A
+    <% else %>
     <%= @hasMost.name %>
+    <% end %>
        
     <br>
     <b>Artists That Only Make Anti-Folk Albums:</b>
