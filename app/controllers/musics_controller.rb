@@ -30,17 +30,18 @@ class MusicsController < ApplicationController
                                   FROM Musics M, Artists_Musics C
                                   WHERE M.rating < 3 AND A.id = C.Artist_id
                                     AND C.music_id = M.id)")
+
     @fan = Person.find_by_sql("SELECT P.name
-                               FROM People P
-                               WHERE NOT EXISTS(
-                                 SELECT M.title
-                                 FROM Musics M, Artists A, Artists_Musics C
-                                 WHERE M.artist_id = C.artist_id AND C.artist_id = A.id
-                                   AND A.name = 'Bethesda'
-                                   AND M.person_id NOT IN(
-                                     SELECT P1.id
-                                     FROM People P1
-                                     WHERE P1.id = M.person_id))")
+                     FROM People P
+                     WHERE NOT EXISTS (
+                       SELECT M.title
+                       FROM Musics M, Artists A, Artists_Musics AM
+                       WHERE M.id = AM.music_id AND A.id = AM.artist_id AND A.name = 'Tally Hall'
+                         AND P.id NOT IN(
+                           SELECT P1.id
+                           FROM People P1
+                           WHERE P1.id = M.person_id))")
+
     @musics = Music.find_by_sql("SELECT * FROM Musics Order By title")
 
     respond_to do |format|

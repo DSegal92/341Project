@@ -2,7 +2,7 @@ class MoviesController < ApplicationController
   # GET /movies
   # GET /movies.json
   def index
-    @threeOrMore = Director.find_by_sql(" SELECT D.name, D.id
+     @threeOrMore = Director.find_by_sql(" SELECT D.name, D.id
                                   FROM Directors D, Movies M, Directors_Movies C
                                   WHERE D.id = C.director_id AND C.movie_id = M.id AND
                                     M.rating >= 3
@@ -32,12 +32,11 @@ class MoviesController < ApplicationController
                                     AND C.movie_id = M.id)")
     @fan = Person.find_by_sql("SELECT P.name
                                FROM People P
-                               WHERE NOT EXISTS(
+                               WHERE NOT EXISTS (
                                  SELECT M.title
-                                 FROM Movies M, Directors D, Directors_Movies C
-                                 WHERE M.director_id = C.director_id AND C.director_id = D.id
-                                   AND D.name = 'Bethesda'
-                                   AND M.person_id NOT IN(
+                                 FROM Movies M, Directors D, Directors_Movies A
+                                 WHERE M.id = A.movie_id AND D.id = A.director_id AND D.name = 'Michael Bay'
+                                   AND P.id NOT IN(
                                      SELECT P1.id
                                      FROM People P1
                                      WHERE P1.id = M.person_id))")

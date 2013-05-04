@@ -1,7 +1,7 @@
 <div class="movies">
   <div class="container_16"><h1>My Movies</h1>
     <br>
-
+    <%= @test %>
           <div class="facts">
         <h3> View Quick Facts </h3>
         <div class="facts2">
@@ -39,7 +39,7 @@
     <% end %>
 
     <br>
-    <b> Users who own every Bethesda Game: </b>
+    <b> Users who own every Michael Bay Movie: </b>
       <% if @fan.nil? %>
         N/A
       <% else %>
@@ -115,7 +115,7 @@
               <b>Comments:</b>
               <%= Movie.find_by_sql('SELECT comments 
               FROM Movies 
-              WHERE movies.id = ' + movie.id.to_s + '')[0]['comments'].truncate(140) %>
+              WHERE movies.id = ' + movie.id.to_s + '')[0]['comments'] %>
               <ul>
                 <li class="spacer"><%= link_to 'Edit', edit_movie_path(movie) %></li>
 

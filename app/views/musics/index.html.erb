@@ -5,7 +5,7 @@
       <div class="facts">
         <h3> View Quick Facts </h3>
         <div class="facts2">
-    <b>Studios with 3 or more 3 Star Games: </b>
+    <b>Artists with 3 or more 3 Star Albums: </b>
       <% if @threeOrMore.empty? %>
          N/A
       <% else %>
@@ -15,11 +15,11 @@
       <% end %>
 
     <br>
-    <b>Person Who Owns the Most Games:</b>
+    <b>Person Who Owns the Most Albums:</b>
     <%= @hasMost.name %>
        
     <br>
-    <b>Studios That Only Make Sports Games:</b>
+    <b>Artists That Only Make Anti-Folk Albums:</b>
       <% if @genreOnly.nil? || @genreOnly.empty? %>
         N/A
       <% else %>
@@ -29,7 +29,7 @@
       <% end %>
     
     <br>
-    <b> Studios Whose Games are All Rated > 3:  </b>
+    <b> Artists Whose Albums are All Rated > 3:  </b>
     <% if @good.nil? || @good.empty? %>
       N/A
     <% else %>
@@ -39,7 +39,7 @@
     <% end %>
 
     <br>
-    <b> Users who own every Bethesda Game: </b>
+    <b> People who own every Tally Hall Album: </b>
       <% if @fan.nil? %>
         N/A
       <% else %>
@@ -113,7 +113,7 @@
               <b>Comments:</b>
               <%= Music.find_by_sql('SELECT comments 
               FROM Musics 
-              WHERE musics.id = ' + music.id.to_s + '')[0]['comments'].truncate(140) %>
+              WHERE musics.id = ' + music.id.to_s + '')[0]['comments'] %>
               <ul>
                 <li class="spacer"><%= link_to 'Edit', edit_music_path(music) %></li>
               </ul>

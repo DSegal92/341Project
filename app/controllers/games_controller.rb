@@ -36,16 +36,16 @@ class GamesController < ApplicationController
                                         AND C.game_id = G.id)")
 
         @fan = Person.find_by_sql("SELECT P.name
-                                   FROM People P
-                                   WHERE NOT EXISTS(
-                                     SELECT G.title
-                                     FROM Games G, Studios S, Games_studios C
-                                     WHERE G.studio_id = C.studio_id AND C.studio_id = S.id
-                                       AND S.name = 'Bethesda'
-                                       AND G.person_id NOT IN(
-                                         SELECT P1.id
-                                         FROM People P1
-                                         WHERE P1.id = G.person_id))")
+                         FROM People P
+                         WHERE NOT EXISTS (
+                           SELECT G.title
+                           FROM Games G, Studios S, Games_Studios SG
+                           WHERE G.id = SG.game_id AND S.id = SG.studio_id AND S.name = 'Bethesda'
+                             AND P.id NOT IN(
+                               SELECT P1.id
+                               FROM People P1
+                               WHERE P1.id = G.person_id))")
+  
 
     @games = Game.find_by_sql("SELECT * FROM Games Order By title")
 

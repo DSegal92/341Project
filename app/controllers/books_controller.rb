@@ -41,6 +41,16 @@ class BooksController < ApplicationController
       AND C.book_id = B.id)
   ")
 
+        @fan = Person.find_by_sql("SELECT P.name
+                               FROM People P
+                               WHERE NOT EXISTS (
+                                 SELECT B.title
+                                 FROM Books B, Authors D, Authors_Books A
+                                 WHERE B.id = A.book_id AND D.id = A.author_id AND D.name = 'Neil Gaiman'
+                                   AND P.id NOT IN(
+                                     SELECT P1.id
+                                     FROM People P1
+                                     WHERE P1.id = B.person_id))")
   
     @books = Book.find_by_sql("SELECT * FROM BOOKS ORDER BY title")
     respond_to do |format|

@@ -109,7 +109,7 @@
               <b>Comments:</b>
               <%= Movie.find_by_sql('SELECT comments 
               FROM Games 
-              WHERE games.id = ' + game.id.to_s + '')[0]['comments'].truncate(140) %>
+              WHERE games.id = ' + game.id.to_s + '')[0]['comments'] %>
               <ul>
 
                 <li class="spacer"><%= link_to 'Edit', edit_game_path(game) %></li>
