@@ -64,7 +64,7 @@ class BooksController < ApplicationController
   # GET /books/1
   # GET /books/1.json
   def show
-    @book = Book.find(params[:id])
+    @book = Book.find_by_sql("SELECT * FROM Books B WHERE B.id = " + params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -76,8 +76,8 @@ class BooksController < ApplicationController
   # GET /books/new.json
   def new
     @book = Book.new
-    @people = Person.all
-    @authors = Author.all
+    @people = Person.find_by_sql("SELECT * FROM People")
+    @authors = Author.find_by_sql("SELECT * FROM Authors")
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @book }
@@ -86,9 +86,9 @@ class BooksController < ApplicationController
 
   # GET /books/1/edit
   def edit
-    @book = Book.find(params[:id])
-    @people = Person.all
-    @authors = Author.all
+   @book = Book.find_by_sql("SELECT * FROM Books B WHERE B.id = " + params[:id]).first()
+    @people = Person.find_by_sql("SELECT * FROM PEOPLE")
+    @authors = Author.find_by_sql("SELECT * FROM AUTHORS")
   end
 
   # POST /books
@@ -111,7 +111,7 @@ class BooksController < ApplicationController
   # PUT /books/1
   # PUT /books/1.json
   def update
-    @book = Book.find(params[:id])
+    @book = Book.find_by_sql("SELECT * FROM Books B WHERE B.id = " + params[:id]).first()
 
     respond_to do |format|
       if @book.update_attributes(params[:book])
@@ -127,7 +127,7 @@ class BooksController < ApplicationController
   # DELETE /books/1
   # DELETE /books/1.json
   def destroy
-    @book = Book.find(params[:id])
+   @book = Book.find_by_sql("SELECT * FROM Books B WHERE B.id = " + params[:id]).first()
     @book.destroy
 
     respond_to do |format|

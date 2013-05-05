@@ -13,7 +13,7 @@ class PeopleController < ApplicationController
   # GET /people/1
   # GET /people/1.json
   def show
-    @person = Person.find(params[:id])
+    @person = Person.find_by_sql("SELECT * FROM People P WHERE P.id = " + params[:id]).first()
 
     respond_to do |format|
       format.html # show.html.erb
@@ -34,7 +34,7 @@ class PeopleController < ApplicationController
 
   # GET /people/1/edit
   def edit
-    @person = Person.find(params[:id])
+     @person = Person.find_by_sql("SELECT * FROM People P WHERE P.id = " + params[:id]).first()
   end
 
   # POST /people
@@ -56,7 +56,7 @@ class PeopleController < ApplicationController
   # PUT /people/1
   # PUT /people/1.json
   def update
-    @person = Person.find(params[:id])
+     @person = Person.find_by_sql("SELECT * FROM People P WHERE P.id = " + params[:id]).first()
 
     respond_to do |format|
       if @person.update_attributes(params[:person])
@@ -72,7 +72,7 @@ class PeopleController < ApplicationController
   # DELETE /people/1
   # DELETE /people/1.json
   def destroy
-    @person = Person.find(params[:id])
+    @person = Person.find_by_sql("SELECT * FROM People P WHERE P.id = " + params[:id]).first()
     @person.destroy
 
     respond_to do |format|

@@ -55,7 +55,7 @@ class MusicsController < ApplicationController
   # GET /musics/1
   # GET /musics/1.json
   def show
-    @music = Music.find(params[:id])
+    @music = Music.find_by_sql("SELECT * FROM Musics M Where M.id = " + params[:id]).first()
 
     respond_to do |format|
       format.html # show.html.erb
@@ -67,8 +67,8 @@ class MusicsController < ApplicationController
   # GET /musics/new.json
   def new
     @music = Music.new
-    @people = Person.all
-    @artists = Artist.all
+    @people = Person.find_by_sql("SELECT * FROM People")
+    @artists = Artist.find_by_sql("SELECT * FROM Artists")
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @music }
@@ -77,9 +77,9 @@ class MusicsController < ApplicationController
 
   # GET /musics/1/edit
   def edit
-    @music = Music.find(params[:id])
-    @people = Person.all
-    @artists = Artist.all
+    @music = Music.find_by_sql("SELECT * FROM Musics M Where M.id = " + params[:id]).first()
+    @people = Person.find_by_sql("SELECT * FROM People")
+    @artists = Artist.find_by_sql("SELECT * FROM Artists")
   end
 
   # POST /musics
@@ -101,7 +101,7 @@ class MusicsController < ApplicationController
   # PUT /musics/1
   # PUT /musics/1.json
   def update
-    @music = Music.find(params[:id])
+    @music =Music.find_by_sql("SELECT * FROM Musics M Where M.id = " + params[:id]).first()
 
     respond_to do |format|
       if @music.update_attributes(params[:music])
@@ -117,7 +117,7 @@ class MusicsController < ApplicationController
   # DELETE /musics/1
   # DELETE /musics/1.json
   def destroy
-    @music = Music.find(params[:id])
+    @music = Music.find_by_sql("SELECT * FROM Musics M Where M.id = " + params[:id]).first()
     @music.destroy
 
     respond_to do |format|

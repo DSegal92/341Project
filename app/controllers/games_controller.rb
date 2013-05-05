@@ -60,7 +60,7 @@ class GamesController < ApplicationController
   # GET /games/1
   # GET /games/1.json
   def show
-    @game = Game.find(params[:id])
+    @game = Game.find_by_sql("SELECT * FROM Games G WHERE G.id = " + params[:id]).first()
 
     respond_to do |format|
       format.html # show.html.erb
@@ -72,8 +72,8 @@ class GamesController < ApplicationController
   # GET /games/new.json
   def new
     @game = Game.new
-    @people = Person.all
-    @studios = Studio.all
+    @people = Person.find_by_sql("SELECT * FROM People")
+    @studios = Studio.find_by_sql("SELECT * FROM Studios")
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @game }
@@ -82,9 +82,9 @@ class GamesController < ApplicationController
 
   # GET /games/1/edit
   def edit
-    @game = Game.find(params[:id])
-    @studios = Studio.all
-    @people = Person.all
+    @game = Game.find_by_sql("SELECT * FROM Games G WHERE G.id = " + params[:id]).first()
+    @people = Person.find_by_sql("SELECT * FROM People")
+    @studios = Studio.find_by_sql("SELECT * FROM Studios")
   end
 
   # POST /games
@@ -106,7 +106,8 @@ class GamesController < ApplicationController
   # PUT /games/1
   # PUT /games/1.json
   def update
-    @game = Game.find(params[:id])
+      @game = Game.find_by_sql("SELECT * FROM Games G WHERE G.id = " + params[:id]).first()
+
 
     respond_to do |format|
       if @game.update_attributes(params[:game])

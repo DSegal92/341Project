@@ -2,7 +2,7 @@ class ArtistsController < ApplicationController
   # GET /artists
   # GET /artists.json
   def index
-    @artists = Artist.all
+    @artists = Artist.find_by_sql("SELECT * FROM Artists")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +13,8 @@ class ArtistsController < ApplicationController
   # GET /artists/1
   # GET /artists/1.json
   def show
-    @artist = Artist.find(params[:id])
+    @artist = Artist.find_by_sql("SELECT * FROM Artists A WHERE A.id = " + params[:id]).first()
+
 
     respond_to do |format|
       format.html # show.html.erb
@@ -34,7 +35,7 @@ class ArtistsController < ApplicationController
 
   # GET /artists/1/edit
   def edit
-    @artist = Artist.find(params[:id])
+     @artist = Artist.find_by_sql("SELECT * FROM Artists A WHERE A.id = " + params[:id]).first()
   end
 
   # POST /artists

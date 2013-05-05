@@ -2,7 +2,7 @@ class AuthorsController < ApplicationController
   # GET /authors
   # GET /authors.json
   def index
-    @authors = Author.all
+    @authors = Author.find_by_sql("SELECT * FROM Authors")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +13,7 @@ class AuthorsController < ApplicationController
   # GET /authors/1
   # GET /authors/1.json
   def show
-    @author = Author.find(params[:id])
+    @author = Author.find_by_sql("SELECT * FROM Authors A WHERE A.id = " + params[:id]).first()
 
     respond_to do |format|
       format.html # show.html.erb
@@ -25,7 +25,7 @@ class AuthorsController < ApplicationController
   # GET /authors/new.json
   def new
     @author = Author.new
-    @people = Person.all
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @author }
@@ -34,7 +34,8 @@ class AuthorsController < ApplicationController
 
   # GET /authors/1/edit
   def edit
-    @author = Author.find(params[:id])
+     @author = Author.find_by_sql("SELECT * FROM Authors A WHERE A.id = " + params[:id]).first()
+
     @people = Person.all
   end
 

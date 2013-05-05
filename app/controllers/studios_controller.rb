@@ -2,7 +2,7 @@ class StudiosController < ApplicationController
   # GET /studios
   # GET /studios.json
   def index
-    @studios = Studio.all
+    @studios = Studio.find_by_sql("SELECT * From Studios")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +13,7 @@ class StudiosController < ApplicationController
   # GET /studios/1
   # GET /studios/1.json
   def show
-    @studio = Studio.find(params[:id])
+    @studio = Studio.find_by_sql("SELECT * FROM Studios S WHERE S.id = " + params[:id]).first()
 
     respond_to do |format|
       format.html # show.html.erb
@@ -34,7 +34,7 @@ class StudiosController < ApplicationController
 
   # GET /studios/1/edit
   def edit
-    @studio = Studio.find(params[:id])
+      @studio = Studio.find_by_sql("SELECT * FROM Studios S WHERE S.id = " + params[:id]).first()
   end
 
   # POST /studios
@@ -56,7 +56,7 @@ class StudiosController < ApplicationController
   # PUT /studios/1
   # PUT /studios/1.json
   def update
-    @studio = Studio.find(params[:id])
+      @studio = Studio.find_by_sql("SELECT * FROM Studios S WHERE S.id = " + params[:id]).first()
 
     respond_to do |format|
       if @studio.update_attributes(params[:studio])
@@ -72,7 +72,7 @@ class StudiosController < ApplicationController
   # DELETE /studios/1
   # DELETE /studios/1.json
   def destroy
-    @studio = Studio.find(params[:id])
+      @studio = Studio.find_by_sql("SELECT * FROM Studios S WHERE S.id = " + params[:id]).first()
     @studio.destroy
 
     respond_to do |format|

@@ -53,7 +53,7 @@ class MoviesController < ApplicationController
   # GET /movies/1
   # GET /movies/1.json
   def show
-    @movie = Movie.find(params[:id])
+    @movie = Movie.find_by_sql("SELECT * FROM Movies M WHERE M.id = " + params[:id]).first()
 
     respond_to do |format|
       format.html # show.html.erb
@@ -65,8 +65,8 @@ class MoviesController < ApplicationController
   # GET /movies/new.json
   def new
     @movie = Movie.new
-    @people = Person.all
-    @directors = Director.all
+    @people = Person.find_by_sql("SELECT * FROM People")
+    @directors = Director.find_by_sql("SELECT * FROM Directors")
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @movie }
@@ -75,7 +75,7 @@ class MoviesController < ApplicationController
 
   # GET /movies/1/edit
   def edit
-    @movie = Movie.find(params[:id])
+        @movie = Movie.find_by_sql("SELECT * FROM Movies M WHERE M.id = " + params[:id]).first()
     @people = Person.all
     @directors = Director.all
   end
@@ -99,7 +99,7 @@ class MoviesController < ApplicationController
   # PUT /movies/1
   # PUT /movies/1.json
   def update
-    @movie = Movie.find(params[:id])
+        @movie = Movie.find_by_sql("SELECT * FROM Movies M WHERE M.id = " + params[:id]).first()
 
     respond_to do |format|
       if @movie.update_attributes(params[:movie])
@@ -115,7 +115,7 @@ class MoviesController < ApplicationController
   # DELETE /movies/1
   # DELETE /movies/1.json
   def destroy
-    @movie = Movie.find(params[:id])
+        @movie = Movie.find_by_sql("SELECT * FROM Movies M WHERE M.id = " + params[:id]).first()
     @movie.destroy
 
     respond_to do |format|
